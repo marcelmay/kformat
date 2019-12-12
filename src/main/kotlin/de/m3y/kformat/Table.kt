@@ -79,7 +79,7 @@ class Table internal constructor() {
                 if (i > 0) {
                     hints.borderStyle.renderVertical(out)
                 } else if (out.isNotEmpty()) {
-                    out.append("\n") // Newline if new row
+                    out.append(System.lineSeparator()) // Newline if new row
                 }
                 try {
                     out.append(formatSpecs[i].format(v))
@@ -353,7 +353,7 @@ class Table internal constructor() {
         }
 
         if (hints.borderStyle.hasRowSeparator()) {
-            out.append("\n")
+            out.append(System.lineSeparator())
             widths.forEachIndexed { index, w ->
                 if (index > 0) {
                     hints.borderStyle.renderHorizontalConnect(out)
@@ -363,13 +363,6 @@ class Table internal constructor() {
                 }
             }
         }
-//        if (hints.borderStyle.hasRowSeparator()) {
-//            val len = out.length - startIdx
-//            out.append("\n")
-//            repeat(len) {
-//                hints.borderStyle.renderHorizontal(out)
-//            }
-//        }
     }
 }
 
