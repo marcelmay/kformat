@@ -1,10 +1,9 @@
-package de.m3y.kformat.de.m3y.kformat
+package de.m3y.kformat
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import de.m3y.kformat.Table.Hints
-import de.m3y.kformat.table
 import org.junit.Test
 import java.time.LocalDateTime
 import java.time.Month
@@ -118,7 +117,7 @@ class TableTest {
             row(20, "b2", "c2")
 
             hints {
-                alignment(Hints.Alignment.RIGHT)
+                defaultAlignment = Hints.Alignment.RIGHT
             }
         }.render().trim()).isEqualTo(
             """
@@ -136,7 +135,7 @@ class TableTest {
             row(20, "b2", "c2")
 
             hints {
-                alignment(Hints.Alignment.LEFT)
+                defaultAlignment = Hints.Alignment.LEFT
             }
         }.render().trim()).isEqualTo(
             """
@@ -170,6 +169,28 @@ class TableTest {
         )
     }
 
+    @Test
+    fun testTableWithBorder() {
+        assertThat(table {
+            header("A", "B", "C")
+            row(10, "b1", "c1")
+            row(20, "b2", "c2")
+
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+            }
+        }.render().trim()).isEqualTo(
+            """
+            A  |  B |  C
+            ---|----|---
+            10 | b1 | c1
+            20 | b2 | c2
+            """.trimIndent()
+        )
+    }
+
 }
 
 fun main() {
@@ -185,6 +206,7 @@ fun main() {
                 alignment("A", Hints.Alignment.LEFT)
                 precision("C", 2)
                 postfix("C", "%")
+                borderStyle = Table.BorderStyle.SINGLE_LINE
             }
         }.render(StringBuilder())
     )

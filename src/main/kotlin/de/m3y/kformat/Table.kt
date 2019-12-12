@@ -35,22 +35,54 @@ import kotlin.math.max
  *  ```
  */
 class Table internal constructor() {
+    interface BorderRenderer {
+        fun hasColumnSeparator(): Boolean
+        fun hasRowSeparator(): Boolean
+        fun renderVertical(out: StringBuilder)
+        fun renderHorizontal(out: StringBuilder)
+        fun renderHorizontalConnect(out: StringBuilder)
+    }
+
+    open class BorderStyle(private val columnSeparator: String,
+                           private val rowSeparator: String,
+                           private val connectSeparator: String = columnSeparator) : BorderRenderer {
+        companion object {
+            val NONE = BorderStyle(" ", "")
+            val SINGLE_LINE = BorderStyle(" | ", "-","-|-")
+        }
+
+        override fun hasColumnSeparator() = columnSeparator.isNotEmpty()
+        override fun hasRowSeparator() = rowSeparator.isNotEmpty()
+
+        override fun renderVertical(out: StringBuilder) {
+            out.append(columnSeparator)
+        }
+
+        override fun renderHorizontal(out: StringBuilder) {
+            out.append(rowSeparator)
+        }
+
+        override fun renderHorizontalConnect(out: StringBuilder) {
+            out.append(connectSeparator)
+        }
+    }
+
     /**
      * Represents a table row of values.
      */
-    class Row(val values: MutableList<Any>) {
+    inner class Row(val values: MutableList<Any>) {
         /**
          * Renders the row values using provided value format specifiers
          */
-        fun render(builder: StringBuilder, formatSpecs: List<String>) {
+        fun render(out: StringBuilder, formatSpecs: List<String>) {
             values.forEachIndexed { i, v ->
                 if (i > 0) {
-                    builder.append(" ") // Separator between values
-                } else if (builder.isNotEmpty()) {
-                    builder.append("\n") // Newline if new row
+                    hints.borderStyle.renderVertical(out)
+                } else if (out.isNotEmpty()) {
+                    out.append("\n") // Newline if new row
                 }
                 try {
-                    builder.append(formatSpecs[i].format(v))
+                    out.append(formatSpecs[i].format(v))
                 } catch (e: java.util.IllegalFormatConversionException) {
                     throw java.lang.IllegalArgumentException(
                         "Can not format value '$v' of type '${v.javaClass} 'using format spec '${formatSpecs[i]}'", e
@@ -67,7 +99,11 @@ class Table internal constructor() {
     /**
      * Holds additional hints for rendering cells, such as cell content alignment.
      */
-    class Hints(val table: Table) {
+    class Hints(
+        val table: Table,
+        var defaultAlignment: Alignment = Alignment.RIGHT,
+        var borderStyle: BorderRenderer = BorderStyle.NONE
+    ) {
         /** Defines the content alignment. */
         enum class Alignment {
             /** Align to the left */
@@ -77,7 +113,6 @@ class Table internal constructor() {
         }
 
         internal val specification = mutableMapOf<String, Any>()
-        private var defaultAlignment: Alignment = Alignment.RIGHT
 
         /**
          * Defines the alignment of a column specified by the header label.
@@ -92,15 +127,6 @@ class Table internal constructor() {
          */
         fun alignment(headerColumnIndex: Int, alignment: Alignment) {
             specification[hintsKey(headerColumnIndex, "alignment")] = alignment
-        }
-
-        /**
-         * Sets the default alignment, unless specified for a column.
-         *
-         * @param default the default alignment
-         */
-        fun alignment(default: Alignment = Alignment.RIGHT) {
-            defaultAlignment = default
         }
 
         internal fun alignmentFormat(columnIndex: Int): String =
@@ -295,7 +321,8 @@ class Table internal constructor() {
                     is LocalDateTime -> formatSpec.append("s")
                     else -> {
                         throw IllegalArgumentException(
-                            "Unsupported value '$v' of type '${v.javaClass}' in row[$columnIndex]")
+                            "Unsupported value '$v' of type '${v.javaClass}' in row[$columnIndex]"
+                        )
                     }
                 }
 
@@ -317,13 +344,33 @@ class Table internal constructor() {
     private fun getPrecisionFormat(columnIndex: Int) =
         hints.precisionFormat(headerLabels[columnIndex])
 
-    private fun renderHeader(builder: StringBuilder, widths: IntArray) {
+    private fun renderHeader(out: StringBuilder, widths: IntArray) {
+        val startIdx = out.length
         headerLabels.forEachIndexed { i, v ->
             if (i > 0) {
-                builder.append(" ")
+                hints.borderStyle.renderVertical(out)
             }
-            builder.append(("%" + hints.alignmentFormat(i) + widths[i] + "s").format(v))
+            out.append(("%" + hints.alignmentFormat(i) + widths[i] + "s").format(v))
         }
+
+        if (hints.borderStyle.hasRowSeparator()) {
+            out.append("\n")
+            widths.forEachIndexed { index, w ->
+                if (index > 0) {
+                    hints.borderStyle.renderHorizontalConnect(out)
+                }
+                repeat(w) {
+                    hints.borderStyle.renderHorizontal(out)
+                }
+            }
+        }
+//        if (hints.borderStyle.hasRowSeparator()) {
+//            val len = out.length - startIdx
+//            out.append("\n")
+//            repeat(len) {
+//                hints.borderStyle.renderHorizontal(out)
+//            }
+//        }
     }
 }
 
