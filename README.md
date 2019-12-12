@@ -1,6 +1,6 @@
 # KFormat
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.m3y.kformat/kformat/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.m3y.kformat/kformat)
+[![Maven Central](https://img.shields.io/maven-central/v/de.m3y.kformat/kformat.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22de.m3y.kformat%22%20AND%20a%3A%22kformat%22)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 ![Pure Java + Kotlin](https://img.shields.io/badge/100%25-java%2bkotlin-orange.svg)
 

@@ -9,7 +9,7 @@
     <version>0.3-SNAPSHOT</version>
 
     <name>KFormat</name>
-    <description>KFormat - format output in Kotlin</description>
+    <description>KFormat - formatted text output in Kotlin</description>
     <url>https://github.com/marcelmay/kformat.git</url>
     <inceptionYear>2019</inceptionYear>
 
