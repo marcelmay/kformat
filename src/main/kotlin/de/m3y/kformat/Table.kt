@@ -345,7 +345,6 @@ class Table internal constructor() {
         hints.precisionFormat(headerLabels[columnIndex])
 
     private fun renderHeader(out: StringBuilder, widths: IntArray) {
-        val startIdx = out.length
         headerLabels.forEachIndexed { i, v ->
             if (i > 0) {
                 hints.borderStyle.renderVertical(out)
