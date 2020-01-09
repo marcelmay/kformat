@@ -43,12 +43,14 @@ class Table internal constructor() {
         fun renderHorizontalConnect(out: StringBuilder)
     }
 
-    open class BorderStyle(private val columnSeparator: String,
-                           private val rowSeparator: String,
-                           private val connectSeparator: String = columnSeparator) : BorderRenderer {
+    open class BorderStyle(
+        private val columnSeparator: String,
+        private val rowSeparator: String,
+        private val connectSeparator: String = columnSeparator
+    ) : BorderRenderer {
         companion object {
             val NONE = BorderStyle(" ", "")
-            val SINGLE_LINE = BorderStyle(" | ", "-","-|-")
+            val SINGLE_LINE = BorderStyle(" | ", "-", "-|-")
         }
 
         override fun hasColumnSeparator() = columnSeparator.isNotEmpty()
@@ -173,7 +175,10 @@ class Table internal constructor() {
         }
 
         /**
-         * Defines a postfix for a column specified by the header column index.
+         * Defines a postfix for a column specified by the column index.
+         *
+         * @param columnIndex the columnIndex, starting at 0
+         * @param postfix the value to be postfixed to each row value and given column index.
          */
         fun postfix(columnIndex: Int, postfix: String) {
             specification[hintsKey(columnIndex, "postfix")] = postfix
@@ -181,10 +186,31 @@ class Table internal constructor() {
 
         fun postfix(columnIndex: Int) = (specification[hintsKey(columnIndex, "postfix")] as String?) ?: ""
 
-        internal fun postfixLengthIncrement(columnIndex: Int): Int {
-            val p = specification[hintsKey(columnIndex, "postfix")] as String?
-            return p?.length ?: 0
+        internal fun postfixLengthIncrement(columnIndex: Int): Int = postfix(columnIndex).length
+
+        /**
+         * Defines a prefix for a column specified by the header label.
+         *
+         * @param headerLabel the header label specifying a column
+         * @param prefix the value to be prefixed for each row value and given column index.
+         */
+        fun prefix(headerLabel: String, prefix: String) {
+            prefix(columnIndex(headerLabel), prefix)
         }
+
+        /**
+         * Defines a prefix for a column specified by the column index.
+         *
+         * @param columnIndex the columnIndex, starting at 0
+         * @param prefix the value to be prefixed for each row value and given column index.
+         */
+        fun prefix(columnIndex: Int, prefix: String) {
+            specification[hintsKey(columnIndex, "prefix")] = prefix
+        }
+
+        fun prefix(columnIndex: Int) = (specification[hintsKey(columnIndex, "prefix")] as String?) ?: ""
+
+        internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
 
         private fun columnIndex(headerLabel: String): Int {
             // TODO: Switch to map<idx,label> ?
@@ -193,7 +219,7 @@ class Table internal constructor() {
         }
 
         private fun hintsKey(headerLabel: String, subKey: String) = hintsKey(columnIndex(headerLabel), subKey)
-        private fun hintsKey(columnIndex: Int, postfix: String) = "$columnIndex.$postfix"
+        private fun hintsKey(columnIndex: Int, subKey: String) = "$columnIndex.$subKey"
     }
 
     private val headerLabels = mutableListOf<String>()
@@ -292,6 +318,7 @@ class Table internal constructor() {
 
     private fun extraFormattedValueLength(columnIndex: Int): Int =
         hints.postfixLengthIncrement(columnIndex) +
+                hints.prefixLengthIncrement(columnIndex) +
                 hints.precisionLengthIncrement(columnIndex)
 
     private fun length(d: Double): Int {
@@ -309,10 +336,22 @@ class Table internal constructor() {
         if (rows.isNotEmpty()) {
             val exampleRow = rows[0]
             exampleRow.values.forEachIndexed { columnIndex, v ->
+                val formatSpec = StringBuffer()
+
+                // Prefix
+                val prefix = hints.prefix(columnIndex)
+                if (prefix.isNotEmpty()) {
+                    formatSpec.append(prefix)
+                }
+
                 val alignment = hints.alignmentFormat(columnIndex)
-                val formatSpec = StringBuffer("%")
+                formatSpec.append("%")
                     .append(alignment)
-                    .append(widths[columnIndex] - hints.postfix(columnIndex).length)
+                    .append(
+                        widths[columnIndex] - hints.prefixLengthIncrement(columnIndex) - hints.postfixLengthIncrement(
+                            columnIndex
+                        )
+                    )
                 when (v) {
                     is CharSequence -> formatSpec.append("s")
                     is Int -> formatSpec.append("d")

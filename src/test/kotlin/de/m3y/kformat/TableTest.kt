@@ -191,6 +191,28 @@ class TableTest {
         )
     }
 
+    @Test
+    fun testPrefix() {
+        assertThat(table {
+            header("A", "B", "C", "D")
+            row(10, "b1", "c1", "d1")
+            row(20, "b2", "c2", "d2")
+
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                prefix(3, "±")
+            }
+        }.render().trim()).isEqualTo(
+            """
+            A  |  B |  C |   D
+            ---|----|----|----
+            10 | b1 | c1 | ±d1
+            20 | b2 | c2 | ±d2
+            """.trimIndent()
+        )
+    }
 }
 
 fun main() {
