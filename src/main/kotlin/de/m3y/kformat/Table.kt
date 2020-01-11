@@ -37,7 +37,7 @@ import kotlin.math.max
 class Table internal constructor() {
     /**
      * Renders a border.
-      */
+     */
     interface BorderRenderer {
         fun hasColumnSeparator(): Boolean
         fun hasRowSeparator(): Boolean
@@ -226,7 +226,15 @@ class Table internal constructor() {
 
         internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
 
-        private fun columnIndex(headerLabel: String): Int {
+        /**
+         * Gets the column index for a header label.
+         *
+         * Throws an IllegalArgumentException if no label can be found.
+         *
+         * @param headerLabel the label value of a header column.
+         * @return the column index of the first matching header column
+         */
+        fun columnIndex(headerLabel: String): Int {
             // TODO: Switch to map<idx,label> ?
             table.headerLabels.forEachIndexed { index, s -> if (s == headerLabel) return index }
             throw java.lang.IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
@@ -234,11 +242,12 @@ class Table internal constructor() {
 
         private fun hintsKey(headerLabel: String, subKey: String) = hintsKey(columnIndex(headerLabel), subKey)
         private fun hintsKey(columnIndex: Int, subKey: String) = "$columnIndex.$subKey"
-        fun line(columnIndex: Int) {
+
+        internal fun line(columnIndex: Int) {
             specification[hintsKey(columnIndex, "line")] = ""
         }
 
-        fun isLine(columnIndex: Int) = specification.containsKey(hintsKey(columnIndex, "line"))
+        internal fun isLine(columnIndex: Int) = specification.containsKey(hintsKey(columnIndex, "line"))
     }
 
     private val headerLabels = mutableListOf<String>()
