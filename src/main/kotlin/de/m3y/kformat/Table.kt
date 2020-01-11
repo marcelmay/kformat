@@ -35,12 +35,15 @@ import kotlin.math.max
  *  ```
  */
 class Table internal constructor() {
+    /**
+     * Renders a border.
+      */
     interface BorderRenderer {
         fun hasColumnSeparator(): Boolean
         fun hasRowSeparator(): Boolean
         fun renderVertical(out: StringBuilder)
         fun renderHorizontal(out: StringBuilder)
-        fun renderHorizontalConnect(out: StringBuilder)
+        fun renderConnect(out: StringBuilder)
     }
 
     open class BorderStyle(
@@ -64,7 +67,7 @@ class Table internal constructor() {
             out.append(rowSeparator)
         }
 
-        override fun renderHorizontalConnect(out: StringBuilder) {
+        override fun renderConnect(out: StringBuilder) {
             out.append(connectSeparator)
         }
     }
@@ -72,11 +75,11 @@ class Table internal constructor() {
     /**
      * Represents a table row of values.
      */
-    inner class Row(val values: MutableList<Any>) {
+    open inner class Row(val values: MutableList<Any>) {
         /**
          * Renders the row values using provided value format specifiers
          */
-        fun render(out: StringBuilder, formatSpecs: List<String>) {
+        open fun render(out: StringBuilder, formatSpecs: List<String>) {
             values.forEachIndexed { i, v ->
                 if (i > 0) {
                     hints.borderStyle.renderVertical(out)
@@ -87,7 +90,8 @@ class Table internal constructor() {
                     out.append(formatSpecs[i].format(v))
                 } catch (e: java.util.IllegalFormatConversionException) {
                     throw java.lang.IllegalArgumentException(
-                        "Can not format value '$v' of type '${v.javaClass} 'using format spec '${formatSpecs[i]}'", e
+                        "Can not format value '$v' of type '${v.javaClass} 'using format spec '${formatSpecs[i]}'",
+                        e
                     )
                 }
             }
@@ -99,10 +103,20 @@ class Table internal constructor() {
     }
 
     /**
+     * A line is a special row containing a single value which spans all columns and renders without formatting.
+     */
+    inner class Line(value: String) : Row(mutableListOf(value)) {
+        override fun render(out: StringBuilder, formatSpecs: List<String>) {
+            out.append(System.lineSeparator()) // Newline if new row
+                .append(values.first())
+        }
+    }
+
+    /**
      * Holds additional hints for rendering cells, such as cell content alignment.
      */
     class Hints(
-        val table: Table,
+        private val table: Table,
         var defaultAlignment: Alignment = Alignment.RIGHT,
         var borderStyle: BorderRenderer = BorderStyle.NONE
     ) {
@@ -214,12 +228,17 @@ class Table internal constructor() {
 
         private fun columnIndex(headerLabel: String): Int {
             // TODO: Switch to map<idx,label> ?
-            table.headerLabels.forEachIndexed { index, s -> if (s.equals(headerLabel)) return index }
+            table.headerLabels.forEachIndexed { index, s -> if (s == headerLabel) return index }
             throw java.lang.IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
         }
 
         private fun hintsKey(headerLabel: String, subKey: String) = hintsKey(columnIndex(headerLabel), subKey)
         private fun hintsKey(columnIndex: Int, subKey: String) = "$columnIndex.$subKey"
+        fun line(columnIndex: Int) {
+            specification[hintsKey(columnIndex, "line")] = ""
+        }
+
+        fun isLine(columnIndex: Int) = specification.containsKey(hintsKey(columnIndex, "line"))
     }
 
     private val headerLabels = mutableListOf<String>()
@@ -229,18 +248,18 @@ class Table internal constructor() {
     /**
      * Renders the content as a table.
      *
-     * @param builder the string builder receiving the rendering ouput
+     * @param out the string builder receiving the rendering output
      * @return the builder, for convenience
      */
-    fun render(builder: StringBuilder = StringBuilder()): StringBuilder {
+    fun render(out: StringBuilder = StringBuilder()): StringBuilder {
         val widths = widths()
         val columnFormats = computeColFormats(widths)
 
-        renderHeader(builder, widths)
-        rows.forEach { r ->
-            r.render(builder, columnFormats)
+        renderHeader(out, widths)
+        rows.forEach { row ->
+            row.render(out, columnFormats)
         }
-        return builder
+        return out
     }
 
     /**
@@ -294,23 +313,25 @@ class Table internal constructor() {
         val maxColumns = max(rows.map { it.values.size }.max() ?: 0, headerLabels.size)
         // Headers can be empty (not set)
         val w = if (headerLabels.isEmpty()) IntArray(maxColumns) else headerLabels.map { it.length }.toIntArray()
-        rows.forEach { r: Row ->
-            r.values.forEachIndexed { i, v ->
-                // Headers can be not set
-                val valueExtraLength = extraFormattedValueLength(i)
-                w[i] = max(
-                    w[i],
-                    when (v) {
-                        is CharSequence -> v.length + valueExtraLength
-                        is Int -> length(v.toDouble()) + valueExtraLength
-                        is Float -> length(v.toDouble()) + valueExtraLength
-                        is Double -> length(v) + +valueExtraLength
-                        is LocalDateTime -> v.toString().length + valueExtraLength
-                        else -> {
-                            throw IllegalStateException("Value '$v' of type '${v.javaClass}' in row[$i] not supported")
+        rows.forEachIndexed { rowIndex, r ->
+            if (!hints.isLine(rowIndex)) {
+                r.values.forEachIndexed { i, v ->
+                    // Headers can be not set
+                    val valueExtraLength = extraFormattedValueLength(i)
+                    w[i] = max(
+                        w[i],
+                        when (v) {
+                            is CharSequence -> v.length + valueExtraLength
+                            is Int -> length(v.toDouble()) + valueExtraLength
+                            is Float -> length(v.toDouble()) + valueExtraLength
+                            is Double -> length(v) + +valueExtraLength
+                            is LocalDateTime -> v.toString().length + valueExtraLength
+                            else -> {
+                                throw IllegalStateException("Value '$v' of type '${v.javaClass}' in row[$i] not supported")
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
         }
         return w
@@ -334,7 +355,7 @@ class Table internal constructor() {
     private fun computeColFormats(widths: IntArray): List<String> {
         val columnFormats = mutableListOf<String>()
         if (rows.isNotEmpty()) {
-            val exampleRow = rows[0]
+            val exampleRow = findExampleRow()
             exampleRow.values.forEachIndexed { columnIndex, v ->
                 val formatSpec = StringBuffer()
 
@@ -377,6 +398,14 @@ class Table internal constructor() {
         return columnFormats
     }
 
+    private fun findExampleRow(): Row {
+        rows.forEachIndexed { index, row ->
+            if (!hints.isLine(index)) return row
+        }
+        throw java.lang.IllegalStateException("No row found in $rows that is not an unformatted 'line'")
+    }
+
+
     private fun escapeForFormat(s: String) =
         s.replace("%", "%%")
 
@@ -395,13 +424,25 @@ class Table internal constructor() {
             out.append(System.lineSeparator())
             widths.forEachIndexed { index, w ->
                 if (index > 0) {
-                    hints.borderStyle.renderHorizontalConnect(out)
+                    hints.borderStyle.renderConnect(out)
                 }
                 repeat(w) {
                     hints.borderStyle.renderHorizontal(out)
                 }
             }
         }
+    }
+
+    /**
+     * Adds an unformatted row (aka line).
+     *
+     * @param content the unformatted row value.
+     */
+    fun line(content: String): Row {
+        hints.line(rows.size)
+        val row = Line(content)
+        rows.add(row)
+        return row
     }
 }
 

@@ -36,7 +36,7 @@ A  |     B |     C | Long_Header
 10 | b...1 | 2.10% |         foo
 20 |    b2 | 0.33% |         bar
 ```
-For further examples, see [test cases](src/test/kotlin/TableTest.kt)
+For further examples, see [test cases](src/test/kotlin/de/m3y/kformat/TableTest.kt)
 ## Downloading
 Download from [Maven Central](https://search.maven.org/search?q=g:de.m3y.kformat%20AND%20a:kformat) or use GAV de.m3y.kformat:kformat:VERSION
 

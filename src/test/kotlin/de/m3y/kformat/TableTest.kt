@@ -22,7 +22,7 @@ class TableTest {
 
             // Hints tune rendering by adding additional formatting instructions
             hints {
-                // Use a precission of two for formatting floats of column 'Foo'
+                // Use a precision of two for formatting floats of column 'Foo'
                 precision("Foo", 2)
                 // Align header and values to the lef
                 alignment("Dddddddd", Hints.Alignment.LEFT)
@@ -210,6 +210,37 @@ class TableTest {
             ---|----|----|----
             10 | b1 | c1 | ±d1
             20 | b2 | c2 | ±d2
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun testPrintln() {
+        assertThat(table {
+            header("A", "B", "C")
+            line("An unformatted line between")
+            row(10, "b1", "c1")
+            row(20, "b2", "c2")
+            line("Another unformatted line between")
+            line("Again, another unformatted line between")
+            row(30, "b3", "c3")
+
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                prefix(3, "±")
+            }
+        }.render().trim()).isEqualTo(
+            """
+            A  |  B |  C
+            ---|----|---
+            An unformatted line between
+            10 | b1 | c1
+            20 | b2 | c2
+            Another unformatted line between
+            Again, another unformatted line between
+            30 | b3 | c3
             """.trimIndent()
         )
     }
