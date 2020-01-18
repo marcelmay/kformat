@@ -80,21 +80,20 @@ class Table internal constructor() {
          * Renders the row values using provided value format specifiers
          */
         open fun render(out: StringBuilder, formatSpecs: List<String>) {
-            values.forEachIndexed { i, v ->
+            values.forEachIndexed { i, columnValue ->
                 if (i > 0) {
                     hints.borderStyle.renderVertical(out)
-                } else if (out.isNotEmpty()) {
-                    out.append(System.lineSeparator()) // Newline if new row
                 }
                 try {
-                    out.append(formatSpecs[i].format(v))
+                    out.append(formatSpecs[i].format(columnValue))
                 } catch (e: java.util.IllegalFormatConversionException) {
                     throw java.lang.IllegalArgumentException(
-                        "Can not format value '$v' of type '${v.javaClass} 'using format spec '${formatSpecs[i]}'",
+                        "Can not format value '$columnValue' of type '${columnValue.javaClass} 'using format spec '${formatSpecs[i]}'",
                         e
                     )
                 }
             }
+            out.append(System.lineSeparator()) // Row ends with end-of-line
         }
 
         override fun toString(): String {
@@ -107,8 +106,8 @@ class Table internal constructor() {
      */
     inner class Line(value: String) : Row(mutableListOf(value)) {
         override fun render(out: StringBuilder, formatSpecs: List<String>) {
-            out.append(System.lineSeparator()) // Newline if new row
-                .append(values.first())
+            out.append(values.first())
+                .append(System.lineSeparator()) // Line ends with end-of-line
         }
     }
 
@@ -440,6 +439,7 @@ class Table internal constructor() {
                 }
             }
         }
+        out.append(System.lineSeparator())
     }
 
     /**
