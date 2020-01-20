@@ -267,6 +267,14 @@ class Table internal constructor() {
         }
 
         private fun hintsKey(columnIndex: Any, subKey: String) = "$columnIndex.$subKey"
+        internal operator fun plus(providedSpec: Map<String, Any>) : Hints {
+            specification.putAll(providedSpec)
+            return this
+        }
+        internal operator fun plus(keyValue: Pair<String, Any>) : Hints {
+            specification[keyValue.first] = keyValue.second
+            return this
+        }
     }
 
     private val headerLabels = mutableListOf<String>()
@@ -334,6 +342,16 @@ class Table internal constructor() {
      */
     fun hints(init: Hints.() -> Unit): Hints {
         hints.init()
+        return hints
+    }
+
+    /**
+     * DSL builder helper for hints.
+     *
+     * @param providedSpec some default render specification values
+     */
+    fun hints(providedSpec: Map<String,Any>, init: Hints.() -> Unit): Hints {
+        hints(init) + providedSpec
         return hints
     }
 
