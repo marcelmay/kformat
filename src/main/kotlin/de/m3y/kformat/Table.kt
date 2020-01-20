@@ -474,6 +474,10 @@ class Table internal constructor() {
         hints.precisionFormat(headerLabels[columnIndex])
 
     private fun renderHeader(out: StringBuilder, widths: IntArray) {
+        if(headerLabels.isEmpty()) {
+            return
+        }
+
         hints.leftMargin()?.also { out.append(it) }
         headerLabels.forEachIndexed { i, v ->
             if (i > 0) {
