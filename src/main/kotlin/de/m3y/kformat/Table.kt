@@ -80,6 +80,8 @@ class Table internal constructor() {
          * Renders the row values using provided value format specifiers
          */
         open fun render(out: StringBuilder, formatSpecs: List<String>) {
+            hints.leftMargin()?.also { out.append(it) }
+
             values.forEachIndexed { i, columnValue ->
                 if (i > 0) {
                     hints.borderStyle.renderVertical(out)
@@ -221,9 +223,18 @@ class Table internal constructor() {
         }
 
         fun prefix(columnIndex: Int) = (getSpecification(columnIndex, "prefix") as String?) ?: ""
-
         internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
 
+        /**
+         * Prepends the margin value for each output row.
+         * Can be used to eg indent a table.
+         *
+         * @param margin the margin value
+         */
+        fun leftMargin(margin: String) {
+            updateSpecification("leftMargin", margin)
+        }
+        fun leftMargin() = getSpecification("leftMargin") as String?
 
         internal fun line(columnIndex: Int) {
             updateSpecification(columnIndex, "line", "")
@@ -246,12 +257,16 @@ class Table internal constructor() {
         }
 
         private fun getSpecification(columnIndex: Int, subKey: String) = specification[hintsKey(columnIndex, subKey)]
+        private fun getSpecification(subKey: String) = specification[hintsKey("*", subKey)]
 
         private fun updateSpecification(columnIndex: Int, subKey: String, value: Any) {
             specification[hintsKey(columnIndex, subKey)] = value
         }
+        private fun updateSpecification(subKey: String, value: Any) {
+            specification[hintsKey("*", subKey)] = value
+        }
 
-        private fun hintsKey(columnIndex: Int, subKey: String) = "$columnIndex.$subKey"
+        private fun hintsKey(columnIndex: Any, subKey: String) = "$columnIndex.$subKey"
     }
 
     private val headerLabels = mutableListOf<String>()
@@ -426,6 +441,7 @@ class Table internal constructor() {
         hints.precisionFormat(headerLabels[columnIndex])
 
     private fun renderHeader(out: StringBuilder, widths: IntArray) {
+        hints.leftMargin()?.also { out.append(it) }
         headerLabels.forEachIndexed { i, v ->
             if (i > 0) {
                 hints.borderStyle.renderVertical(out)
@@ -435,6 +451,7 @@ class Table internal constructor() {
 
         if (hints.borderStyle.hasRowSeparator()) {
             out.append(System.lineSeparator())
+            hints.leftMargin()?.also { out.append(it) }
             widths.forEachIndexed { index, w ->
                 if (index > 0) {
                     hints.borderStyle.renderConnect(out)

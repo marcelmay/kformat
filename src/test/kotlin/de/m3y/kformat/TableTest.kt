@@ -244,6 +244,27 @@ class TableTest {
             """.trimIndent()
         )
     }
+
+    @Test
+    fun testMargin() {
+        assertThat(table {
+            header("A", "B", "C")
+            row(10, "b1", "c1")
+            row(20, "b2", "c2")
+
+            hints {
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                leftMargin(".  ")
+            }
+        }.render().trim()).isEqualTo(
+            """
+            .   A |  B |  C
+            .  ---|----|---
+            .  10 | b1 | c1
+            .  20 | b2 | c2
+            """.trimIndent()
+        )
+    }
 }
 
 fun main() {
