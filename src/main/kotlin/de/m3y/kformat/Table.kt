@@ -141,14 +141,12 @@ class Table internal constructor() {
          * Defines the alignment of a column specified by the header column index.
          */
         fun alignment(headerColumnIndex: Int, alignment: Alignment) {
-            specification[hintsKey(headerColumnIndex, "alignment")] = alignment
+            updateSpecification(headerColumnIndex, "alignment", alignment)
         }
 
         internal fun alignmentFormat(columnIndex: Int): String =
-            if (Alignment.LEFT == specification[hintsKey(
-                    columnIndex,
-                    "alignment"
-                )] || Alignment.LEFT == defaultAlignment
+            if (Alignment.LEFT == getSpecification(columnIndex, "alignment")
+                || Alignment.LEFT == defaultAlignment
             ) "-" else ""
 
         /**
@@ -163,16 +161,16 @@ class Table internal constructor() {
          * Defines the floating point precision of a column specified by the header column index.
          */
         fun precision(columnIndex: Int, value: Int) {
-            specification[hintsKey(columnIndex, "precision")] = value
+            updateSpecification(columnIndex, "precision", value)
         }
 
         internal fun precisionLengthIncrement(columnIndex: Int): Int {
-            val p = specification[hintsKey(columnIndex, "precision")] as Int? ?: 0
+            val p = getSpecification(columnIndex, "precision") as Int? ?: 0
             return if (p > 0) p + 1 else 0
         }
 
         internal fun precisionFormat(headerLabel: String): String {
-            val p = specification[hintsKey(headerLabel, "precision")]
+            val p = getSpecification(columnIndex(headerLabel), "precision")
             return if (p != null) {
                 "." + p
             } else {
@@ -194,10 +192,11 @@ class Table internal constructor() {
          * @param postfix the value to be postfixed to each row value and given column index.
          */
         fun postfix(columnIndex: Int, postfix: String) {
-            specification[hintsKey(columnIndex, "postfix")] = postfix
+            updateSpecification(columnIndex, "postfix", postfix)
         }
 
-        fun postfix(columnIndex: Int) = (specification[hintsKey(columnIndex, "postfix")] as String?) ?: ""
+        fun postfix(columnIndex: Int) = (getSpecification(columnIndex, "postfix") as String?) ?: ""
+
 
         internal fun postfixLengthIncrement(columnIndex: Int): Int = postfix(columnIndex).length
 
@@ -218,12 +217,19 @@ class Table internal constructor() {
          * @param prefix the value to be prefixed for each row value and given column index.
          */
         fun prefix(columnIndex: Int, prefix: String) {
-            specification[hintsKey(columnIndex, "prefix")] = prefix
+            updateSpecification(columnIndex, "prefix", prefix)
         }
 
-        fun prefix(columnIndex: Int) = (specification[hintsKey(columnIndex, "prefix")] as String?) ?: ""
+        fun prefix(columnIndex: Int) = (getSpecification(columnIndex, "prefix") as String?) ?: ""
 
         internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
+
+
+        internal fun line(columnIndex: Int) {
+            updateSpecification(columnIndex, "line", "")
+        }
+
+        internal fun isLine(columnIndex: Int) = specification.containsKey(hintsKey(columnIndex, "line"))
 
         /**
          * Gets the column index for a header label.
@@ -233,20 +239,19 @@ class Table internal constructor() {
          * @param headerLabel the label value of a header column.
          * @return the column index of the first matching header column
          */
-        fun columnIndex(headerLabel: String): Int {
+        private fun columnIndex(headerLabel: String): Int {
             // TODO: Switch to map<idx,label> ?
             table.headerLabels.forEachIndexed { index, s -> if (s == headerLabel) return index }
             throw java.lang.IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
         }
 
-        private fun hintsKey(headerLabel: String, subKey: String) = hintsKey(columnIndex(headerLabel), subKey)
-        private fun hintsKey(columnIndex: Int, subKey: String) = "$columnIndex.$subKey"
+        private fun getSpecification(columnIndex: Int, subKey: String) = specification[hintsKey(columnIndex, subKey)]
 
-        internal fun line(columnIndex: Int) {
-            specification[hintsKey(columnIndex, "line")] = ""
+        private fun updateSpecification(columnIndex: Int, subKey: String, value: Any) {
+            specification[hintsKey(columnIndex, subKey)] = value
         }
 
-        internal fun isLine(columnIndex: Int) = specification.containsKey(hintsKey(columnIndex, "line"))
+        private fun hintsKey(columnIndex: Int, subKey: String) = "$columnIndex.$subKey"
     }
 
     private val headerLabels = mutableListOf<String>()
