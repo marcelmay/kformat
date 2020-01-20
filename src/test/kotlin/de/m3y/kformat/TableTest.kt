@@ -57,13 +57,13 @@ class TableTest {
             row(20, "b2", "c2")
 
             hints {
-                assertThat(specification["0.alignment"]).isNull()
+                assertThat(specification[Hints.Key.Alignment.ofColumn(0)]).isNull()
                 alignment("A", Hints.Alignment.LEFT)
-                assertThat(specification["0.alignment"]).isEqualTo(Hints.Alignment.LEFT)
+                assertThat(specification[Hints.Key.Alignment.ofColumn(0)]).isEqualTo(Hints.Alignment.LEFT)
 
-                assertThat(specification["1.alignment"]).isNull()
+                assertThat(specification[Hints.Key.Alignment.ofColumn(1)]).isNull()
                 alignment("B", Hints.Alignment.RIGHT)
-                assertThat(specification["1.alignment"]).isEqualTo(Hints.Alignment.RIGHT)
+                assertThat(specification[Hints.Key.Alignment.ofColumn(1)]).isEqualTo(Hints.Alignment.RIGHT)
             }
         }.render().trim()).isEqualTo(
             """
@@ -153,13 +153,13 @@ class TableTest {
             row(20, "b2", "c2")
 
             hints {
-                assertThat(specification["0.alignment"]).isNull()
+                assertThat(specification[Hints.Key.Alignment.ofColumn(0)]).isNull()
                 alignment(0, Hints.Alignment.LEFT)
-                assertThat(specification["0.alignment"]).isEqualTo(Hints.Alignment.LEFT)
+                assertThat(specification[Hints.Key.Alignment.ofColumn(0)]).isEqualTo(Hints.Alignment.LEFT)
 
-                assertThat(specification["1.alignment"]).isNull()
+                assertThat(specification[Hints.Key.Alignment.ofColumn(1)]).isNull()
                 alignment(1, Hints.Alignment.RIGHT)
-                assertThat(specification["1.alignment"]).isEqualTo(Hints.Alignment.RIGHT)
+                assertThat(specification[Hints.Key.Alignment.ofColumn(1)]).isEqualTo(Hints.Alignment.RIGHT)
             }
         }.render().trim()).isEqualTo(
             """
@@ -273,9 +273,8 @@ class TableTest {
             row(10, "b1", "c1")
             row(20, "b2", "c2")
 
-            hints(mapOf("*.leftMargin" to ">")) {
+            hints(mapOf(Hints.Key.LeftMargin.ofAnyColumn() to ">")) {
                 borderStyle = Table.BorderStyle.SINGLE_LINE
-                leftMargin(".  ")
             }
         }.render().trim()).isEqualTo(
             """
@@ -293,8 +292,7 @@ class TableTest {
 
             hints {
                 borderStyle = Table.BorderStyle.SINGLE_LINE
-                leftMargin(".  ")
-            } + mapOf("*.leftMargin" to ">>>")
+            } + mapOf(Hints.Key.LeftMargin.ofAnyColumn() to ">>>")
         }.render().trim()).isEqualTo(
             """
             >>> A |  B |  C
@@ -311,8 +309,7 @@ class TableTest {
 
             hints {
                 borderStyle = Table.BorderStyle.SINGLE_LINE
-                leftMargin(".  ")
-            } + ("*.leftMargin" to ">>>")
+            } + (Hints.Key.LeftMargin.ofAnyColumn() to ">>>")
         }.render().trim()).isEqualTo(
             """
             >>> A |  B |  C

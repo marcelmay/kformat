@@ -129,6 +129,26 @@ class Table internal constructor() {
             RIGHT
         }
 
+        /**
+         * Defines the (internal) hint keys.
+         *
+         * KeyFormat ::= ColumnFormat ':' KeyName
+         * ColumnFormat ::= Integer | '*'
+         * KeyName ::= 'alignment'| ....
+         */
+        enum class Key {
+            Alignment,
+            LeftMargin,
+            Line,
+            Postfix,
+            Precision,
+            Prefix;
+
+            private fun makeKey(part:String) = "$part:$name"
+            fun ofColumn(columnIndex: Int) = makeKey(columnIndex.toString())
+            fun ofAnyColumn() = makeKey("*")
+        }
+
         internal val specification = mutableMapOf<String, Any>()
 
         /**
@@ -143,11 +163,11 @@ class Table internal constructor() {
          * Defines the alignment of a column specified by the header column index.
          */
         fun alignment(headerColumnIndex: Int, alignment: Alignment) {
-            updateSpecification(headerColumnIndex, "alignment", alignment)
+            updateSpecification(Key.Alignment.ofColumn(headerColumnIndex), alignment)
         }
 
         internal fun alignmentFormat(columnIndex: Int): String =
-            if (Alignment.LEFT == getSpecification(columnIndex, "alignment")
+            if (Alignment.LEFT == getSpecification(Key.Alignment.ofColumn(columnIndex))
                 || Alignment.LEFT == defaultAlignment
             ) "-" else ""
 
@@ -163,16 +183,16 @@ class Table internal constructor() {
          * Defines the floating point precision of a column specified by the header column index.
          */
         fun precision(columnIndex: Int, value: Int) {
-            updateSpecification(columnIndex, "precision", value)
+            updateSpecification(Key.Precision.ofColumn(columnIndex), value)
         }
 
         internal fun precisionLengthIncrement(columnIndex: Int): Int {
-            val p = getSpecification(columnIndex, "precision") as Int? ?: 0
+            val p = getSpecification(Key.Precision.ofColumn(columnIndex)) as Int? ?: 0
             return if (p > 0) p + 1 else 0
         }
 
         internal fun precisionFormat(headerLabel: String): String {
-            val p = getSpecification(columnIndex(headerLabel), "precision")
+            val p = getSpecification(Key.Precision.ofColumn(columnIndex(headerLabel)))
             return if (p != null) {
                 "." + p
             } else {
@@ -194,10 +214,10 @@ class Table internal constructor() {
          * @param postfix the value to be postfixed to each row value and given column index.
          */
         fun postfix(columnIndex: Int, postfix: String) {
-            updateSpecification(columnIndex, "postfix", postfix)
+            updateSpecification(Key.Postfix.ofColumn(columnIndex), postfix)
         }
 
-        fun postfix(columnIndex: Int) = (getSpecification(columnIndex, "postfix") as String?) ?: ""
+        fun postfix(columnIndex: Int) = (getSpecification(Key.Postfix.ofColumn(columnIndex)) as String?) ?: ""
 
 
         internal fun postfixLengthIncrement(columnIndex: Int): Int = postfix(columnIndex).length
@@ -219,10 +239,10 @@ class Table internal constructor() {
          * @param prefix the value to be prefixed for each row value and given column index.
          */
         fun prefix(columnIndex: Int, prefix: String) {
-            updateSpecification(columnIndex, "prefix", prefix)
+            updateSpecification(Key.Prefix.ofColumn(columnIndex), prefix)
         }
 
-        fun prefix(columnIndex: Int) = (getSpecification(columnIndex, "prefix") as String?) ?: ""
+        fun prefix(columnIndex: Int) = (getSpecification(Key.Prefix.ofColumn(columnIndex)) as String?) ?: ""
         internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
 
         /**
@@ -232,15 +252,15 @@ class Table internal constructor() {
          * @param margin the margin value
          */
         fun leftMargin(margin: String) {
-            updateSpecification("leftMargin", margin)
+            updateSpecification(Key.LeftMargin.ofAnyColumn(), margin)
         }
-        fun leftMargin() = getSpecification("leftMargin") as String?
+        fun leftMargin() = getSpecification(Key.LeftMargin.ofAnyColumn()) as String?
 
         internal fun line(columnIndex: Int) {
-            updateSpecification(columnIndex, "line", "")
+            updateSpecification(Key.Line.ofColumn(columnIndex), "")
         }
 
-        internal fun isLine(columnIndex: Int) = specification.containsKey(hintsKey(columnIndex, "line"))
+        internal fun isLine(columnIndex: Int) = specification.containsKey(Key.Line.ofColumn(columnIndex))
 
         /**
          * Gets the column index for a header label.
@@ -256,17 +276,12 @@ class Table internal constructor() {
             throw java.lang.IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
         }
 
-        private fun getSpecification(columnIndex: Int, subKey: String) = specification[hintsKey(columnIndex, subKey)]
-        private fun getSpecification(subKey: String) = specification[hintsKey("*", subKey)]
+        private fun getSpecification(key: String) = specification[key]
 
-        private fun updateSpecification(columnIndex: Int, subKey: String, value: Any) {
-            specification[hintsKey(columnIndex, subKey)] = value
-        }
-        private fun updateSpecification(subKey: String, value: Any) {
-            specification[hintsKey("*", subKey)] = value
+        private fun updateSpecification(key: String, value: Any) {
+            specification[key] = value
         }
 
-        private fun hintsKey(columnIndex: Any, subKey: String) = "$columnIndex.$subKey"
         internal operator fun plus(providedSpec: Map<String, Any>) : Hints {
             specification.putAll(providedSpec)
             return this
