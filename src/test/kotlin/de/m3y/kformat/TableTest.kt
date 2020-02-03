@@ -2,7 +2,9 @@ package de.m3y.kformat
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
 import assertk.assertions.isNull
+import assertk.assertions.isTrue
 import de.m3y.kformat.Table.Hints
 import org.junit.Test
 import java.time.LocalDateTime
@@ -215,7 +217,7 @@ class TableTest {
     }
 
     @Test
-    fun testPrintln() {
+    fun testLine() {
         assertThat(table {
             header("A", "B", "C")
             line("An unformatted line between")
@@ -243,6 +245,33 @@ class TableTest {
             30 | b3 | c3
             """.trimIndent()
         )
+
+        assertThat(table {
+                    line("An unformatted line between")
+                }.render().trim()).isEqualTo(
+                    """
+                    An unformatted line between
+                    """.trimIndent()
+                )
+    }
+
+    @Test
+    fun testHasRows() {
+        assertThat(table {
+            line("An unformatted line between")
+        }.hasRows()).isFalse()
+        assertThat(table {
+            line("An unformatted line between")
+            line("An unformatted line between")
+        }.hasRows()).isFalse()
+        assertThat(table {
+            row("An unformatted line between")
+        }.hasRows()).isTrue()
+        assertThat(table {
+            line("An unformatted line between")
+            row("An unformatted line between")
+            line("An unformatted line between")
+        }.hasRows()).isTrue()
     }
 
     @Test

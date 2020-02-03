@@ -413,9 +413,23 @@ class Table internal constructor() {
         }
     }
 
+    /**
+     * Returns true if table contains at least one 'data' row.
+     *
+     * Note: A 'line(...)' does not count as a row.
+     *
+     * @return true if any row is a data row.
+     */
+    fun hasRows(): Boolean {
+        for(i in rows.indices) {
+            if (!hints.isLine(i)) return true
+        }
+        return false
+    }
+
     private fun computeColFormats(widths: IntArray): List<String> {
         val columnFormats = mutableListOf<String>()
-        if (rows.isNotEmpty()) {
+        if (hasRows()) { // Only compute widths if formatted rows exist. 'line' row is not formatted.
             val exampleRow = findExampleRow()
             exampleRow.values.forEachIndexed { columnIndex, v ->
                 val formatSpec = StringBuffer()
