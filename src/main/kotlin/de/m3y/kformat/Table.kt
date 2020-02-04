@@ -46,13 +46,18 @@ class Table internal constructor() {
         fun renderConnect(out: StringBuilder)
     }
 
+    /**
+     * Renders borders with [NONE] and [SINGLE_LINE] implementations for a table.
+     */
     open class BorderStyle(
         private val columnSeparator: String,
         private val rowSeparator: String,
         private val connectSeparator: String = columnSeparator
     ) : BorderRenderer {
         companion object {
+            /** Renders no border.*/
             val NONE = BorderStyle(" ", "")
+            /** Renders a single line border. */
             val SINGLE_LINE = BorderStyle(" | ", "-", "-|-")
         }
 
@@ -217,6 +222,12 @@ class Table internal constructor() {
             updateSpecification(Key.Postfix.ofColumn(columnIndex), postfix)
         }
 
+        /**
+         * Gets the postfix for given column, or an empty string if not set.
+         *
+         * @param columnIndex the columnIndex, starting at 0
+         * @return the postfix value or empty string (if not set)
+         */
         fun postfix(columnIndex: Int) = (getSpecification(Key.Postfix.ofColumn(columnIndex)) as String?) ?: ""
 
 
