@@ -146,6 +146,26 @@ class TableTest {
             20  b2  c2
             """.trimIndent()
         )
+
+        // Default align set to LEFT, one col right
+        assertThat(table {
+            header("A__", "__B", "__C")
+
+            row(10, "b1", "c1")
+            row(20, "b2", "c2")
+
+            hints {
+                defaultAlignment = Hints.Alignment.LEFT
+                alignment("__C", Hints.Alignment.RIGHT)
+                alignment(1 /* __B */, Hints.Alignment.RIGHT)
+            }
+        }.render().trim()).isEqualTo(
+            """
+            A__ __B __C
+            10   b1  c1
+            20   b2  c2
+            """.trimIndent()
+        )
     }
 
     @Test

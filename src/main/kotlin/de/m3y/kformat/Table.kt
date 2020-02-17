@@ -1,5 +1,7 @@
 package de.m3y.kformat
 
+import de.m3y.kformat.Table.BorderStyle.Companion.NONE
+import de.m3y.kformat.Table.BorderStyle.Companion.SINGLE_LINE
 import java.time.LocalDateTime
 import kotlin.math.abs
 import kotlin.math.log10
@@ -149,7 +151,7 @@ class Table internal constructor() {
             Precision,
             Prefix;
 
-            private fun makeKey(part:String) = "$part:$name"
+            private fun makeKey(part: String) = "$part:$name"
             fun ofColumn(columnIndex: Int) = makeKey(columnIndex.toString())
             fun ofAnyColumn() = makeKey("*")
         }
@@ -171,10 +173,12 @@ class Table internal constructor() {
             updateSpecification(Key.Alignment.ofColumn(headerColumnIndex), alignment)
         }
 
-        internal fun alignmentFormat(columnIndex: Int): String =
-            if (Alignment.LEFT == getSpecification(Key.Alignment.ofColumn(columnIndex))
-                || Alignment.LEFT == defaultAlignment
-            ) "-" else ""
+        internal fun alignmentFormat(columnIndex: Int): String {
+            return when (getSpecification(Key.Alignment.ofColumn(columnIndex)) as Alignment? ?: defaultAlignment) {
+                Alignment.RIGHT -> ""
+                Alignment.LEFT -> "-"
+            }
+        }
 
         /**
          * Defines the floating point precision of a column specified by the header label.
@@ -265,6 +269,7 @@ class Table internal constructor() {
         fun leftMargin(margin: String) {
             updateSpecification(Key.LeftMargin.ofAnyColumn(), margin)
         }
+
         fun leftMargin() = getSpecification(Key.LeftMargin.ofAnyColumn()) as String?
 
         internal fun line(columnIndex: Int) {
@@ -293,11 +298,12 @@ class Table internal constructor() {
             specification[key] = value
         }
 
-        internal operator fun plus(providedSpec: Map<String, Any>) : Hints {
+        internal operator fun plus(providedSpec: Map<String, Any>): Hints {
             specification.putAll(providedSpec)
             return this
         }
-        internal operator fun plus(keyValue: Pair<String, Any>) : Hints {
+
+        internal operator fun plus(keyValue: Pair<String, Any>): Hints {
             specification[keyValue.first] = keyValue.second
             return this
         }
@@ -376,7 +382,7 @@ class Table internal constructor() {
      *
      * @param providedSpec some default render specification values
      */
-    fun hints(providedSpec: Map<String,Any>, init: Hints.() -> Unit): Hints {
+    fun hints(providedSpec: Map<String, Any>, init: Hints.() -> Unit): Hints {
         hints(init) + providedSpec
         return hints
     }
@@ -432,7 +438,7 @@ class Table internal constructor() {
      * @return true if any row is a data row.
      */
     fun hasRows(): Boolean {
-        for(i in rows.indices) {
+        for (i in rows.indices) {
             if (!hints.isLine(i)) return true
         }
         return false
@@ -499,7 +505,7 @@ class Table internal constructor() {
         hints.precisionFormat(headerLabels[columnIndex])
 
     private fun renderHeader(out: StringBuilder, widths: IntArray) {
-        if(headerLabels.isEmpty()) {
+        if (headerLabels.isEmpty()) {
             return
         }
 
