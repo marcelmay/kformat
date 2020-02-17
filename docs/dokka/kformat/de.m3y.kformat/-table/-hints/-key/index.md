@@ -12,6 +12,8 @@ KeyName ::= 'alignment'| ....
 
 ### Enum Values
 
+| Name | Summary |
+|---|---|
 | [Alignment](-alignment.md) |  |
 | [LeftMargin](-left-margin.md) |  |
 | [Line](-line.md) |  |
@@ -21,6 +23,7 @@ KeyName ::= 'alignment'| ....
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [ofAnyColumn](of-any-column.md) | `fun ofAnyColumn(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
 | [ofColumn](of-column.md) | `fun ofColumn(columnIndex: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-

@@ -8,6 +8,7 @@ Defines the content alignment.
 
 ### Enum Values
 
+| Name | Summary |
+|---|---|
 | [LEFT](-l-e-f-t.md) | Align to the left |
 | [RIGHT](-r-i-g-h-t.md) | Align to the right |
-

@@ -290,7 +290,7 @@
                             <goal>dokka</goal>
                         </goals>
                         <configuration>
-                            <outputFormat>markdown</outputFormat>
+                            <outputFormat>gfm</outputFormat>
                             <outputDir>docs/dokka</outputDir>
                         </configuration>
                     </execution>
