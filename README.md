@@ -7,9 +7,10 @@
 KFormat is a tiny Kotlin library for formatted text output such as printing values in a structured table.
 Typical use cases include CLI tool development.
 
-* [Table](src/main/kotlin/de/m3y/kformat/Table.kt)
+* Table ([doc](docs/dokka/kformat/de.m3y.kformat/-table/index.md)/[source](src/main/kotlin/de/m3y/kformat/Table.kt))
+  * Grid-based like a HTML table
   * Auto-sizing of cell widths
-  * Formatting hints, such as for alignment or floating precision rendering
+  * Formatting hints, such as for alignment, floating precision rendering or border rendering
 
 ## Examples
 
@@ -54,4 +55,4 @@ mvn install dokka:dokka
 ```
 ## Copyright
 
-Copyright 2019 Marcel May <marcel.may.de@gmail.com>
+Copyright 2019-2020 [Marcel May](https://github.com/marcelmay)
