@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Hints(table: `[`Table`](../index.md)`, defaultAlignment: Alignment = Alignment.RIGHT, borderStyle: BorderRenderer = BorderStyle.NONE)`
+`Hints(table: `[`Table`](../index.md)`, defaultAlignment: Alignment = Alignment.RIGHT, borderStyle: BorderRenderer = NONE)`
 
 Holds additional hints for rendering cells, such as cell content alignment.
 

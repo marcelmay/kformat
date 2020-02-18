@@ -17,7 +17,7 @@ Holds additional hints for rendering cells, such as cell content alignment.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | Holds additional hints for rendering cells, such as cell content alignment.`Hints(table: `[`Table`](../index.md)`, defaultAlignment: Alignment = Alignment.RIGHT, borderStyle: BorderRenderer = BorderStyle.NONE)` |
+| [&lt;init&gt;](-init-.md) | Holds additional hints for rendering cells, such as cell content alignment.`Hints(table: `[`Table`](../index.md)`, defaultAlignment: Alignment = Alignment.RIGHT, borderStyle: BorderRenderer = NONE)` |
 
 ### Properties
 

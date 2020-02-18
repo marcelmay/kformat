@@ -82,7 +82,9 @@ class Table internal constructor() {
     /**
      * Represents a table row of values.
      */
-    open inner class Row(val values: MutableList<Any>) {
+    open inner class Row(
+        val /** The values in this row. Can be used for dynamically appending additional values. */ values: MutableList<Any>
+    ) {
         /**
          * Renders the row values using provided value format specifiers
          */
@@ -96,8 +98,9 @@ class Table internal constructor() {
                 try {
                     out.append(formatSpecs[i].format(columnValue))
                 } catch (e: java.util.IllegalFormatConversionException) {
-                    throw java.lang.IllegalArgumentException(
-                        "Can not format value '$columnValue' of type '${columnValue.javaClass} 'using format spec '${formatSpecs[i]}'",
+                    throw IllegalArgumentException(
+                        "Can not format value '$columnValue' of type '${columnValue.javaClass} 'using " +
+                                "format spec '${formatSpecs[i]}'",
                         e
                     )
                 }
@@ -126,7 +129,7 @@ class Table internal constructor() {
     class Hints(
         private val table: Table,
         var defaultAlignment: Alignment = Alignment.RIGHT,
-        var borderStyle: BorderRenderer = BorderStyle.NONE
+        var borderStyle: BorderRenderer = NONE
     ) {
         /** Defines the content alignment. */
         enum class Alignment {
@@ -195,10 +198,7 @@ class Table internal constructor() {
             updateSpecification(Key.Precision.ofColumn(columnIndex), value)
         }
 
-        internal fun precisionLengthIncrement(columnIndex: Int): Int {
-            val p = getSpecification(Key.Precision.ofColumn(columnIndex)) as Int? ?: 0
-            return if (p > 0) p + 1 else 0
-        }
+        internal fun precision(columnIndex: Int) = getSpecification(Key.Precision.ofColumn(columnIndex)) as Int? ?: 0
 
         internal fun precisionFormat(headerLabel: String): String {
             val p = getSpecification(Key.Precision.ofColumn(columnIndex(headerLabel)))
@@ -399,15 +399,15 @@ class Table internal constructor() {
                     w[i] = max(
                         w[i],
                         when (v) {
-                            is CharSequence -> v.length + valueExtraLength
-                            is Int -> length(v.toDouble()) + valueExtraLength
-                            is Float -> length(v.toDouble()) + valueExtraLength
-                            is Double -> length(v) + +valueExtraLength
-                            is LocalDateTime -> v.toString().length + valueExtraLength
+                            is CharSequence -> v.length
+                            is Int -> length(v.toDouble())
+                            is Float -> length(v.toDouble(), hints.precision(i))
+                            is Double -> length(v, hints.precision(i))
+                            is LocalDateTime -> v.toString().length
                             else -> {
                                 throw IllegalStateException("Value '$v' of type '${v.javaClass}' in row[$i] not supported")
                             }
-                        }
+                        } + valueExtraLength
                     )
                 }
             }
@@ -415,10 +415,14 @@ class Table internal constructor() {
         return w
     }
 
+    private fun length(d: Double, precision: Int) =
+        if (precision > 0) {
+            ("%." + precision + "f").format(d).length
+        } else length(d)
+
     private fun extraFormattedValueLength(columnIndex: Int): Int =
         hints.postfixLengthIncrement(columnIndex) +
-                hints.prefixLengthIncrement(columnIndex) +
-                hints.precisionLengthIncrement(columnIndex)
+                hints.prefixLengthIncrement(columnIndex)
 
     private fun length(d: Double): Int {
         val da = abs(d)

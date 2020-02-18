@@ -16,7 +16,7 @@ Represents a table row of values.
 
 | Name | Summary |
 |---|---|
-| [values](values.md) | `val values: `[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)`<`[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`>` |
+| [values](values.md) | The values in this row. Can be used for dynamically appending additional values.`val values: `[`MutableList`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)`<`[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`>` |
 
 ### Functions
 

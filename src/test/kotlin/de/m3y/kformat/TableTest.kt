@@ -47,6 +47,30 @@ class TableTest {
             9     90 900 v9       0.90% 2019-12-10T21:09
             """.trimIndent()
         )
+        assertThat(table {
+            // Add the header labels
+            header("A", "B12345", "C1", "Dddddddd", "Foo", "Bar")
+
+            row(9,900,900,"v9",-99.98167968734772, LocalDateTime.of(2019, Month.DECEMBER, 10, 21, 10))
+            row(9,900,900,"v9",20.23486145693435, LocalDateTime.of(2019, Month.DECEMBER, 10, 21, 10))
+
+            // Hints tune rendering by adding additional formatting instructions
+            hints {
+                // Use a precision of two for formatting floats of column 'Foo'
+                precision("Foo", 1)
+                // Align header and values to the lef
+                alignment("Dddddddd", Hints.Alignment.LEFT)
+                alignment("Bar", Hints.Alignment.LEFT)
+                // Append a '%' to the formatted values of column 'Foo'
+                postfix("Foo", "%")
+            }
+        }.render().trim()).isEqualTo(
+            """
+A B12345  C1 Dddddddd     Foo Bar             
+9    900 900 v9       -100.0% 2019-12-10T21:10
+9    900 900 v9         20.2% 2019-12-10T21:10
+            """.trimIndent()
+        )
     }
 
     @Test
