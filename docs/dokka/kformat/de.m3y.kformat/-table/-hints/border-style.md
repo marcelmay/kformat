@@ -3,3 +3,6 @@
 # borderStyle
 
 `var borderStyle: BorderRenderer`
+
+Defines the border style
+

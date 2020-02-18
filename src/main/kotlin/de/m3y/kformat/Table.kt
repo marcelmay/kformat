@@ -144,7 +144,9 @@ class Table internal constructor() {
      */
     class Hints(
         private val table: Table,
+        /** Defines the default horizontal cell alignemnt */
         var defaultAlignment: Alignment = Alignment.RIGHT,
+        /** Defines the border style */
         var borderStyle: BorderRenderer = NONE
     ) {
         /** Defines the content alignment. */
@@ -274,6 +276,11 @@ class Table internal constructor() {
             updateSpecification(Key.Prefix.ofColumn(columnIndex), prefix)
         }
 
+        /**
+         * Gets the prefix value for given column.
+         *
+         * @return the prefix value or empty.
+         */
         fun prefix(columnIndex: Int) = (getSpecification(Key.Prefix.ofColumn(columnIndex)) as String?) ?: ""
         internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
 
@@ -287,6 +294,9 @@ class Table internal constructor() {
             updateSpecification(Key.LeftMargin.ofAnyColumn(), margin)
         }
 
+        /**
+         * Gets the left margin value used for indenting rendered table.
+         */
         fun leftMargin() = getSpecification(Key.LeftMargin.ofAnyColumn()) as String?
 
         internal fun line(columnIndex: Int) {

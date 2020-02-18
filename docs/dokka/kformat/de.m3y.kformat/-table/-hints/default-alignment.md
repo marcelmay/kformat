@@ -3,3 +3,6 @@
 # defaultAlignment
 
 `var defaultAlignment: Alignment`
+
+Defines the default horizontal cell alignemnt
+

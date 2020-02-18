@@ -10,3 +10,6 @@ Can be used to eg indent a table.
 ### Parameters
 
 `margin` - the margin value`fun leftMargin(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+
+Gets the left margin value used for indenting rendered table.
+
