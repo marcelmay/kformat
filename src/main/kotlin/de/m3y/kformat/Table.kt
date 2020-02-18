@@ -83,28 +83,40 @@ class Table internal constructor() {
      * Represents a table row of values.
      */
     open inner class Row(
-        val /** The values in this row. Can be used for dynamically appending additional values. */ values: MutableList<Any>
+        val
+        /** The values in this row. Can be used for dynamically appending additional values. */
+        values: MutableList<Any>
     ) {
         /**
          * Renders the row values using provided value format specifiers
          */
-        open fun render(out: StringBuilder, formatSpecs: List<String>) {
+        open fun render(
+            out: StringBuilder,
+            formatSpecs: List<String>,
+            widths: IntArray
+        ) {
             hints.leftMargin()?.also { out.append(it) }
 
-            values.forEachIndexed { i, columnValue ->
+            widths.forEachIndexed { i, w ->
                 if (i > 0) {
                     hints.borderStyle.renderVertical(out)
                 }
-                try {
-                    out.append(formatSpecs[i].format(columnValue))
-                } catch (e: java.util.IllegalFormatConversionException) {
-                    throw IllegalArgumentException(
-                        "Can not format value '$columnValue' of type '${columnValue.javaClass} 'using " +
-                                "format spec '${formatSpecs[i]}'",
-                        e
-                    )
+                if (i < values.size) {
+                    val columnValue = values[i]
+                    try {
+                        out.append(formatSpecs[i].format(columnValue))
+                    } catch (e: java.util.IllegalFormatConversionException) {
+                        throw IllegalArgumentException(
+                            "Can not format value '$columnValue' of type '${columnValue.javaClass} 'using " +
+                                    "format spec '${formatSpecs[i]}'",
+                            e
+                        )
+                    }
+                } else {
+                    out.append("%${w}s".format(" "))
                 }
             }
+
             out.append(System.lineSeparator()) // Row ends with end-of-line
         }
 
@@ -117,7 +129,11 @@ class Table internal constructor() {
      * A line is a special row containing a single value which spans all columns and renders without formatting.
      */
     inner class Line(value: String) : Row(mutableListOf(value)) {
-        override fun render(out: StringBuilder, formatSpecs: List<String>) {
+        override fun render(
+            out: StringBuilder,
+            formatSpecs: List<String>,
+            widths: IntArray
+        ) {
             out.append(values.first())
                 .append(System.lineSeparator()) // Line ends with end-of-line
         }
@@ -198,10 +214,11 @@ class Table internal constructor() {
             updateSpecification(Key.Precision.ofColumn(columnIndex), value)
         }
 
-        internal fun precision(columnIndex: Int) = getSpecification(Key.Precision.ofColumn(columnIndex)) as Int? ?: 0
+        internal fun precision(columnIndex: Int) =
+            getSpecification(Key.Precision.ofColumn(columnIndex)) as Int? ?: 0
 
-        internal fun precisionFormat(headerLabel: String): String {
-            val p = getSpecification(Key.Precision.ofColumn(columnIndex(headerLabel)))
+        internal fun precisionFormat(columnIndex: Int): String {
+            val p = getSpecification(Key.Precision.ofColumn(columnIndex))
             return if (p != null) {
                 "." + p
             } else {
@@ -325,7 +342,7 @@ class Table internal constructor() {
 
         renderHeader(out, widths)
         rows.forEach { row ->
-            row.render(out, columnFormats)
+            row.render(out, columnFormats, widths)
         }
         return out
     }
@@ -390,7 +407,8 @@ class Table internal constructor() {
     private fun widths(): IntArray {
         val maxColumns = max(rows.map { it.values.size }.max() ?: 0, headerLabels.size)
         // Headers can be empty (not set)
-        val w = if (headerLabels.isEmpty()) IntArray(maxColumns) else headerLabels.map { it.length }.toIntArray()
+        val w = IntArray(maxColumns)
+        headerLabels.forEachIndexed { i, s -> w[i] = s.length }
         rows.forEachIndexed { rowIndex, r ->
             if (!hints.isLine(rowIndex)) {
                 r.values.forEachIndexed { i, v ->
@@ -417,8 +435,10 @@ class Table internal constructor() {
 
     private fun length(d: Double, precision: Int) =
         if (precision > 0) {
-            ("%." + precision + "f").format(d).length
-        } else length(d)
+            ("%." + precision + "f")
+        } else {
+            "%f"
+        }.format(d).length
 
     private fun extraFormattedValueLength(columnIndex: Int): Int =
         hints.postfixLengthIncrement(columnIndex) +
@@ -506,7 +526,7 @@ class Table internal constructor() {
         s.replace("%", "%%")
 
     private fun getPrecisionFormat(columnIndex: Int) =
-        hints.precisionFormat(headerLabels[columnIndex])
+        hints.precisionFormat(columnIndex)
 
     private fun renderHeader(out: StringBuilder, widths: IntArray) {
         if (headerLabels.isEmpty()) {
@@ -514,11 +534,15 @@ class Table internal constructor() {
         }
 
         hints.leftMargin()?.also { out.append(it) }
-        headerLabels.forEachIndexed { i, v ->
+
+        for(i in widths.indices) {
             if (i > 0) {
                 hints.borderStyle.renderVertical(out)
             }
-            out.append(("%" + hints.alignmentFormat(i) + widths[i] + "s").format(v))
+
+            val headerLabel =
+                if (i < headerLabels.size) headerLabels[i] else " " // Use empty labels for missing labels
+            out.append(("%" + hints.alignmentFormat(i) + widths[i] + "s").format(headerLabel))
         }
 
         if (hints.borderStyle.hasRowSeparator()) {

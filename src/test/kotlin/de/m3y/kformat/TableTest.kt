@@ -51,8 +51,8 @@ class TableTest {
             // Add the header labels
             header("A", "B12345", "C1", "Dddddddd", "Foo", "Bar")
 
-            row(9,900,900,"v9",-99.98167968734772, LocalDateTime.of(2019, Month.DECEMBER, 10, 21, 10))
-            row(9,900,900,"v9",20.23486145693435, LocalDateTime.of(2019, Month.DECEMBER, 10, 21, 10))
+            row(9, 900, 900, "v9", -99.98167968734772, LocalDateTime.of(2019, Month.DECEMBER, 10, 21, 10))
+            row(9, 900, 900, "v9", 20.23486145693435, LocalDateTime.of(2019, Month.DECEMBER, 10, 21, 10))
 
             // Hints tune rendering by adding additional formatting instructions
             hints {
@@ -291,12 +291,12 @@ A B12345  C1 Dddddddd     Foo Bar
         )
 
         assertThat(table {
-                    line("An unformatted line between")
-                }.render().trim()).isEqualTo(
-                    """
+            line("An unformatted line between")
+        }.render().trim()).isEqualTo(
+            """
                     An unformatted line between
                     """.trimIndent()
-                )
+        )
     }
 
     @Test
@@ -391,6 +391,44 @@ A B12345  C1 Dddddddd     Foo Bar
             >>>20 | b2 | c2
             """.trimIndent()
         )
+    }
+
+    @Test
+    fun testSparseHeaderAndRows() {
+        assertThat(table {
+            header("A", "B")
+            row(10, "b1", 1.5F)
+            row(20)
+            hints {
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                alignment(0, Hints.Alignment.LEFT)
+                precision(2, 2)
+            }
+        }.render().trim()).isEqualTo(
+            """
+                    A  |  B |     
+                    ---|----|-----
+                    10 | b1 | 1.50
+                    20 |    |
+                    """.trimIndent()
+        )
+        assertThat(table {
+            header("A", "B")
+            row(10, "b1", 1.5F)
+            row(20)
+            hints {
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                alignment(0, Hints.Alignment.LEFT)
+            }
+        }.render().trim()).isEqualTo(
+            """
+                    A  |  B |         
+                    ---|----|---------
+                    10 | b1 | 1.500000
+                    20 |    |
+                    """.trimIndent()
+        )
+
     }
 }
 
