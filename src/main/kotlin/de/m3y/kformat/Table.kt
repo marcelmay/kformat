@@ -3,8 +3,6 @@ package de.m3y.kformat
 import de.m3y.kformat.Table.BorderStyle.Companion.NONE
 import de.m3y.kformat.Table.BorderStyle.Companion.SINGLE_LINE
 import java.time.LocalDateTime
-import kotlin.math.abs
-import kotlin.math.log10
 import kotlin.math.max
 
 /**
@@ -166,6 +164,7 @@ class Table internal constructor() {
          */
         enum class Key {
             Alignment,
+            FormatFlag,
             LeftMargin,
             Line,
             Postfix,
@@ -194,12 +193,17 @@ class Table internal constructor() {
             updateSpecification(Key.Alignment.ofColumn(headerColumnIndex), alignment)
         }
 
-        internal fun alignmentFormat(columnIndex: Int): String {
-            return when (getSpecification(Key.Alignment.ofColumn(columnIndex)) as Alignment? ?: defaultAlignment) {
+        internal fun formatFlagOptions(columnIndex: Int): String =
+            alignmentFormat(columnIndex) + formatFlags(columnIndex)
+
+        internal fun formatFlags(columnIndex: Int) =
+            specification[Key.FormatFlag.ofColumn(columnIndex)] as String? ?: ""
+
+        internal fun alignmentFormat(columnIndex: Int) =
+            when (getSpecification(Key.Alignment.ofColumn(columnIndex)) as Alignment? ?: defaultAlignment) {
                 Alignment.RIGHT -> ""
                 Alignment.LEFT -> "-"
             }
-        }
 
         /**
          * Defines the floating point precision of a column specified by the header label.
@@ -282,7 +286,20 @@ class Table internal constructor() {
          * @return the prefix value or empty.
          */
         fun prefix(columnIndex: Int) = (getSpecification(Key.Prefix.ofColumn(columnIndex)) as String?) ?: ""
+
         internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
+
+        /**
+         * Provides a formatting flag instruction.
+         *
+         * @see java.util.Formatter
+         *
+         * @param columnIndex the columnIndex, starting at 0
+         * @param flag the flag value, as defined in [java.util.Formatter]
+         */
+        fun formatFlag(columnIndex: Int, flag: String) {
+            updateSpecification(Key.FormatFlag.ofColumn(columnIndex), flag)
+        }
 
         /**
          * Prepends the margin value for each output row.
@@ -424,13 +441,14 @@ class Table internal constructor() {
                 r.values.forEachIndexed { i, v ->
                     // Headers can be not set
                     val valueExtraLength = extraFormattedValueLength(i)
+                    val formatFlags = hints.formatFlags(i)
                     w[i] = max(
                         w[i],
                         when (v) {
-                            is CharSequence -> v.length
-                            is Int -> length(v.toDouble())
-                            is Float -> length(v.toDouble(), hints.precision(i))
-                            is Double -> length(v, hints.precision(i))
+                            is CharSequence -> ("%" + formatFlags + "s").format(v).length
+                            is Int -> ("%" + formatFlags + "d").format(v).length
+                            is Float -> length(v.toDouble(), hints.precision(i), formatFlags)
+                            is Double -> length(v, hints.precision(i), formatFlags)
                             is LocalDateTime -> v.toString().length
                             else -> {
                                 throw IllegalStateException("Value '$v' of type '${v.javaClass}' in row[$i] not supported")
@@ -443,26 +461,16 @@ class Table internal constructor() {
         return w
     }
 
-    private fun length(d: Double, precision: Int) =
+    private fun length(d: Double, precision: Int, formatFlags: String) =
         if (precision > 0) {
-            ("%." + precision + "f")
+            ("%" + formatFlags + "." + precision + "f")
         } else {
-            "%f"
+            "%" + formatFlags + "f"
         }.format(d).length
 
     private fun extraFormattedValueLength(columnIndex: Int): Int =
         hints.postfixLengthIncrement(columnIndex) +
                 hints.prefixLengthIncrement(columnIndex)
-
-    private fun length(d: Double): Int {
-        val da = abs(d)
-        val r = if (d < 0) 1 else 0
-        return if (da < 10) {
-            r + 1
-        } else {
-            r + log10(da).toInt() + 1
-        }
-    }
 
     /**
      * Returns true if table contains at least one 'data' row.
@@ -491,9 +499,9 @@ class Table internal constructor() {
                     formatSpec.append(prefix)
                 }
 
-                val alignment = hints.alignmentFormat(columnIndex)
+                val flags = hints.formatFlagOptions(columnIndex)
                 formatSpec.append("%")
-                    .append(alignment)
+                    .append(flags)
                     .append(
                         widths[columnIndex] - hints.prefixLengthIncrement(columnIndex) - hints.postfixLengthIncrement(
                             columnIndex
@@ -545,7 +553,7 @@ class Table internal constructor() {
 
         hints.leftMargin()?.also { out.append(it) }
 
-        for(i in widths.indices) {
+        for (i in widths.indices) {
             if (i > 0) {
                 hints.borderStyle.renderVertical(out)
             }

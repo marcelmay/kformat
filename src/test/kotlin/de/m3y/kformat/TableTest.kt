@@ -430,6 +430,45 @@ A B12345  C1 Dddddddd     Foo Bar
         )
 
     }
+
+    @Test
+    fun testFormatFlags() {
+        assertThat(table {
+            header("A", "B", "C")
+            row(10, "b1", 1.5F)
+            hints {
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                alignment(0, Hints.Alignment.LEFT)
+                precision(2, 2)
+                formatFlag(2,"+")
+            }
+        }.render().trim()).isEqualTo(
+            """
+                    A  |  B |     C
+                    ---|----|------
+                    10 | b1 | +1.50
+                    """.trimIndent()
+        )
+
+        assertThat(table {
+            header("A", "B", "C")
+            row(10, "b1", 1.5F)
+            row(1, "b1", -1.3333F)
+            hints {
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                alignment(0, Hints.Alignment.LEFT)
+                precision(2, 2)
+                formatFlag(2,"+")
+            }
+        }.render().trim()).isEqualTo(
+            """
+                    A  |  B |     C
+                    ---|----|------
+                    10 | b1 | +1.50
+                    1  | b1 | -1.33
+                    """.trimIndent()
+        )
+    }
 }
 
 fun main() {
