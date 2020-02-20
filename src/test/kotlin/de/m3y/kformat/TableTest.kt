@@ -1,10 +1,7 @@
 package de.m3y.kformat
 
 import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isFalse
-import assertk.assertions.isNull
-import assertk.assertions.isTrue
+import assertk.assertions.*
 import de.m3y.kformat.Table.Hints
 import org.junit.Test
 import java.time.LocalDateTime
@@ -468,6 +465,17 @@ A B12345  C1 Dddddddd     Foo Bar
                     1  | b1 | -1.33
                     """.trimIndent()
         )
+    }
+
+    @Test
+    fun testHeader() {
+        table {
+            assertThat(header()).isEmpty()
+            header("A","B")
+            assertThat(header()).isEqualTo(listOf("A","B"))
+            header(listOf("B","C","D"))
+            assertThat(header()).isEqualTo(listOf("B","C","D"))
+        }
     }
 }
 

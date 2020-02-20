@@ -330,11 +330,8 @@ class Table internal constructor() {
          * @param headerLabel the label value of a header column.
          * @return the column index of the first matching header column
          */
-        private fun columnIndex(headerLabel: String): Int {
-            // TODO: Switch to map<idx,label> ?
-            table.headerLabels.forEachIndexed { index, s -> if (s == headerLabel) return index }
-            throw java.lang.IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
-        }
+        private fun columnIndex(headerLabel: String) =
+            table.headerToIdxMap[headerLabel] ?: throw IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
 
         private fun getSpecification(key: String) = specification[key]
 
@@ -354,6 +351,7 @@ class Table internal constructor() {
     }
 
     private val headerLabels = mutableListOf<String>()
+    private val headerToIdxMap = mutableMapOf<String, Int>()
     private val hints = Hints(this)
     private val rows: MutableList<Row> = mutableListOf()
 
@@ -377,21 +375,29 @@ class Table internal constructor() {
     /**
      * Sets the header labels.
      *
+     * Note: Replaces any previous values.
+     *
      * @return the list of labels.
      */
-    fun header(vararg labels: String): MutableList<String> {
-        headerLabels.addAll(labels)
-        return headerLabels
+    fun header(vararg labels: String) {
+        header(labels.asList())
     }
 
     /**
      * Sets the header labels.
      *
+     * Note: Replaces any previous values.
+     *
      * @return the list of labels.
      */
-    fun header(labels: List<String>): MutableList<String> {
+    fun header(labels: List<String>) {
+        headerLabels.clear()
         headerLabels.addAll(labels)
-        return headerLabels
+
+        headerToIdxMap.clear()
+        headerLabels.forEachIndexed { i, label ->
+            headerToIdxMap[label] = i
+        }
     }
 
     /**
@@ -401,6 +407,13 @@ class Table internal constructor() {
      * @return the label or index  out of bounds exception
      */
     fun header(columnIndex: Int) = headerLabels[columnIndex]
+
+    /**
+     * Gets current header labels.
+     *
+     * @return a list of current header labels.
+     */
+    fun header() : List<String> = headerLabels
 
     /**
      * Sets the content values of a row.
