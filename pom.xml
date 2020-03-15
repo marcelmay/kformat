@@ -72,7 +72,7 @@
         <dependency>
             <groupId>com.willowtreeapps.assertk</groupId>
             <artifactId>assertk-jvm</artifactId>
-            <version>0.21</version>
+            <version>0.22</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
