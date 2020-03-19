@@ -57,6 +57,7 @@ class Table internal constructor() {
         companion object {
             /** Renders no border.*/
             val NONE = BorderStyle(" ", "")
+
             /** Renders a single line border. */
             val SINGLE_LINE = BorderStyle(" | ", "-", "-|-")
         }
@@ -151,6 +152,7 @@ class Table internal constructor() {
         enum class Alignment {
             /** Align to the left */
             LEFT,
+
             /** Align to the right */
             RIGHT
         }
@@ -331,7 +333,8 @@ class Table internal constructor() {
          * @return the column index of the first matching header column
          */
         private fun columnIndex(headerLabel: String) =
-            table.headerToIdxMap[headerLabel] ?: throw IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
+            table.headerToIdxMap[headerLabel]
+                ?: throw IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
 
         private fun getSpecification(key: String) = specification[key]
 
@@ -413,7 +416,7 @@ class Table internal constructor() {
      *
      * @return a list of current header labels.
      */
-    fun header() : List<String> = headerLabels
+    fun header(): List<String> = headerLabels
 
     /**
      * Sets the content values of a row.
@@ -504,7 +507,7 @@ class Table internal constructor() {
         if (hasRows()) { // Only compute widths if formatted rows exist. 'line' row is not formatted.
             val exampleRow = findExampleRow()
             exampleRow.values.forEachIndexed { columnIndex, v ->
-                val formatSpec = StringBuffer()
+                val formatSpec = StringBuilder()
 
                 // Prefix
                 val prefix = hints.prefix(columnIndex)
@@ -549,7 +552,7 @@ class Table internal constructor() {
         rows.forEachIndexed { index, row ->
             if (!hints.isLine(index)) return row
         }
-        throw java.lang.IllegalStateException("No row found in $rows that is not an unformatted 'line'")
+        throw IllegalStateException("No row found in $rows that is not an unformatted 'line'")
     }
 
 
