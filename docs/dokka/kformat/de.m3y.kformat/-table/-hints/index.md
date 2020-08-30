@@ -24,7 +24,7 @@ Holds additional hints for rendering cells, such as cell content alignment.
 | Name | Summary |
 |---|---|
 | [borderStyle](border-style.md) | Defines the border style`var borderStyle: BorderRenderer` |
-| [defaultAlignment](default-alignment.md) | Defines the default horizontal cell alignemnt`var defaultAlignment: Alignment` |
+| [defaultAlignment](default-alignment.md) | Defines the default horizontal cell alignment`var defaultAlignment: Alignment` |
 
 ### Functions
 

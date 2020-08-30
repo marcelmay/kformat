@@ -4,5 +4,5 @@
 
 `var defaultAlignment: Alignment`
 
-Defines the default horizontal cell alignemnt
+Defines the default horizontal cell alignment
 

@@ -10,7 +10,7 @@ import kotlin.math.max
  *
  *  * A table consists of one (optional) header and a list of rows
  *  * Rendering formats row values, using optional hints for precision or alignment
- *  * Rendering autosizes cell widths
+ *  * Rendering auto-sizes cell widths
  *
  *  Example:
  *  ```kotlin
@@ -143,7 +143,7 @@ class Table internal constructor() {
      */
     class Hints(
         private val table: Table,
-        /** Defines the default horizontal cell alignemnt */
+        /** Defines the default horizontal cell alignment */
         var defaultAlignment: Alignment = Alignment.RIGHT,
         /** Defines the border style */
         var borderStyle: BorderRenderer = NONE
@@ -245,7 +245,7 @@ class Table internal constructor() {
          * Defines a postfix for a column specified by the column index.
          *
          * @param columnIndex the columnIndex, starting at 0
-         * @param postfix the value to be postfixed to each row value and given column index.
+         * @param postfix the value to be post-fixed to each row value and given column index.
          */
         fun postfix(columnIndex: Int, postfix: String) {
             updateSpecification(Key.Postfix.ofColumn(columnIndex), postfix)

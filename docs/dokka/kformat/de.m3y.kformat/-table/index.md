@@ -8,7 +8,7 @@ Provides a DSL for simple table formatted text output.
 
 * A table consists of one (optional) header and a list of rows
 * Rendering formats row values, using optional hints for precision or alignment
-* Rendering autosizes cell widths
+* Rendering auto-sizes cell widths
 
 Example:
 

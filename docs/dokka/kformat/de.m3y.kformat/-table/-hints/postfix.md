@@ -14,7 +14,7 @@ Defines a postfix for a column specified by the column index.
 
 `columnIndex` - the columnIndex, starting at 0
 
-`postfix` - the value to be postfixed to each row value and given column index.`fun postfix(columnIndex: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+`postfix` - the value to be post-fixed to each row value and given column index.`fun postfix(columnIndex: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
 
 Gets the postfix for given column, or an empty string if not set.
 
