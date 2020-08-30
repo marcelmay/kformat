@@ -1,30 +1,15 @@
-//[kformat](../../index.md)/[de.m3y.kformat](../index.md)/[Table](index.md)/[render](render.md)
+[kformat](../../index.md) / [de.m3y.kformat](../index.md) / [Table](index.md) / [render](./render.md)
 
+# render
 
+`fun render(out: `[`StringBuilder`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html)` = StringBuilder()): `[`StringBuilder`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html)
 
-# render  
-[JVM]  
-Brief description  
-Renders the content as a table.  
-  
+Renders the content as a table.
 
+### Parameters
 
-#### Return  
-the builder, for convenience  
-  
+`out` - the string builder receiving the rendering output
 
-
-## Parameters  
-  
-JVM  
-  
-|  Name|  Summary| 
-|---|---|
-| out| the string builder receiving the rendering output
-  
-  
-Content  
-fun [render](render.md)(out: [StringBuilder](https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)): [StringBuilder](https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)  
-
-
+**Return**
+the builder, for convenience
 

@@ -102,7 +102,7 @@
                 <plugin>
                     <groupId>org.jetbrains.dokka</groupId>
                     <artifactId>dokka-maven-plugin</artifactId>
-                    <version>1.4.0-rc</version>
+                    <version>0.10.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -268,12 +268,7 @@
                             <goal>dokka</goal>
                         </goals>
                         <configuration>
-                            <dokkaPlugins>
-                                <plugin>
-                                    <groupId>org.jetbrains.dokka</groupId>
-                                    <artifactId>gfm-plugin</artifactId>
-                                </plugin>
-                            </dokkaPlugins>
+                            <outputFormat>gfm</outputFormat>
                             <outputDir>docs/dokka</outputDir>
                         </configuration>
                     </execution>
