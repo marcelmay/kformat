@@ -1,12 +1,24 @@
-[kformat](../../../index.md) / [de.m3y.kformat](../../index.md) / [Table](../index.md) / [Hints](index.md) / [alignment](./alignment.md)
+//[kformat](../../../index.md)/[de.m3y.kformat](../../index.md)/[Table](../index.md)/[Hints](index.md)/[alignment](alignment.md)
 
-# alignment
 
-`fun alignment(headerLabel: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, alignment: Alignment): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Defines the alignment of a column specified by the header label.
+# alignment  
+[JVM]  
+Brief description  
+Defines the alignment of a column specified by the header label.  
+  
+  
+Content  
+fun [alignment](alignment.md)(headerLabel: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), alignment: [Table.Hints.Alignment](-alignment/index.md))  
 
-`fun alignment(headerColumnIndex: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, alignment: Alignment): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Defines the alignment of a column specified by the header column index.
+[JVM]  
+Brief description  
+Defines the alignment of a column specified by the header column index.  
+  
+  
+Content  
+fun [alignment](alignment.md)(headerColumnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), alignment: [Table.Hints.Alignment](-alignment/index.md))  
+
+
 

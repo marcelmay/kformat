@@ -1,11 +1,25 @@
-[kformat](../../index.md) / [de.m3y.kformat](../index.md) / [Table](index.md) / [row](./row.md)
+//[kformat](../../index.md)/[de.m3y.kformat](../index.md)/[Table](index.md)/[row](row.md)
 
-# row
 
-`fun row(vararg values: `[`Any`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)`): Row`
 
-Sets the content values of a row.
+# row  
+[JVM]  
+Brief description  
+Sets the content values of a row.  
+  
 
-### Parameters
 
-`values` - the row content values.
+## Parameters  
+  
+JVM  
+  
+|  Name|  Summary| 
+|---|---|
+| values| the row content values.
+  
+  
+Content  
+fun [row](row.md)(vararg values: [Array](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html)<Out [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)>): [Table.Row](-row/index.md)  
+
+
+
