@@ -448,7 +448,7 @@ class Table internal constructor() {
     }
 
     private fun widths(): IntArray {
-        val maxColumns = max(rows.map { it.values.size }.max() ?: 0, headerLabels.size)
+        val maxColumns = max(rows.map { it.values.size }.maxOrNull() ?: 0, headerLabels.size)
         // Headers can be empty (not set)
         val w = IntArray(maxColumns)
         headerLabels.forEachIndexed { i, s -> w[i] = s.length }
