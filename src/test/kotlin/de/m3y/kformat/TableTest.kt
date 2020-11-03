@@ -1,7 +1,10 @@
 package de.m3y.kformat
 
 import assertk.assertThat
-import assertk.assertions.*
+import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
+import assertk.assertions.isNull
+import assertk.assertions.isTrue
 import de.m3y.kformat.Table.Hints
 import org.junit.Test
 import java.time.LocalDateTime
@@ -425,7 +428,6 @@ A B12345  C1 Dddddddd     Foo Bar
                     20 |    |
                     """.trimIndent()
         )
-
     }
 
     @Test
@@ -437,7 +439,7 @@ A B12345  C1 Dddddddd     Foo Bar
                 borderStyle = Table.BorderStyle.SINGLE_LINE
                 alignment(0, Hints.Alignment.LEFT)
                 precision(2, 2)
-                formatFlag(2,"+")
+                formatFlag(2, "+")
             }
         }.render().trim()).isEqualTo(
             """
@@ -455,7 +457,7 @@ A B12345  C1 Dddddddd     Foo Bar
                 borderStyle = Table.BorderStyle.SINGLE_LINE
                 alignment(0, Hints.Alignment.LEFT)
                 precision(2, 2)
-                formatFlag(2,"+")
+                formatFlag(2, "+")
             }
         }.render().trim()).isEqualTo(
             """
@@ -468,14 +470,55 @@ A B12345  C1 Dddddddd     Foo Bar
     }
 
     @Test
-    fun testHeader() {
-        table {
-            assertThat(header()).isEmpty()
-            header("A","B")
-            assertThat(header()).isEqualTo(listOf("A","B"))
-            header(listOf("B","C","D"))
-            assertThat(header()).isEqualTo(listOf("B","C","D"))
-        }
+    fun testRepeatingHeader() {
+        assertThat(
+            table {
+                header("A1", "B1")
+                row("a1", "b1")
+                row("a2", "b2")
+                line()
+                header("A3", "B3")
+                row("a4", "b4")
+                hints {
+                    borderStyle = Table.BorderStyle.SINGLE_LINE
+                }
+            }.render().trim()
+        ).isEqualTo(
+            """
+                A1 | B1
+                ---|---
+                a1 | b1
+                a2 | b2
+                
+                A3 | B3
+                ---|---
+                a4 | b4
+            """.trimIndent()
+        )
+
+        // With variable widths
+        assertThat(
+            table {
+                header("A1", "B1")
+                row("a1", "b1")
+                line()
+                header("A3", "B3", "C3")
+                row("a4", "b4", "c3")
+                hints {
+                    borderStyle = Table.BorderStyle.SINGLE_LINE
+                }
+            }.render().trim()
+        ).isEqualTo(
+            """
+                A1 | B1 |   
+                ---|----|---
+                a1 | b1 |   
+                
+                A3 | B3 | C3
+                ---|----|---
+                a4 | b4 | c3
+            """.trimIndent()
+        )
     }
 }
 

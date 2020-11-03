@@ -167,6 +167,7 @@ class Table internal constructor() {
         enum class Key {
             Alignment,
             FormatFlag,
+            Header,
             LeftMargin,
             Line,
             Postfix,
@@ -318,6 +319,12 @@ class Table internal constructor() {
          */
         fun leftMargin() = getSpecification(Key.LeftMargin.ofAnyColumn()) as String?
 
+        internal fun header(columnIndex: Int) {
+            updateSpecification(Key.Header.ofColumn(columnIndex), "")
+        }
+
+        internal fun isHeader(columnIndex: Int) = specification.containsKey(Key.Header.ofColumn(columnIndex))
+
         internal fun line(columnIndex: Int) {
             updateSpecification(Key.Line.ofColumn(columnIndex), "")
         }
@@ -334,7 +341,7 @@ class Table internal constructor() {
          */
         private fun columnIndex(headerLabel: String) =
             table.headerToIdxMap[headerLabel]
-                ?: throw IllegalArgumentException("Can not find header label $headerLabel in ${table.headerLabels}")
+                ?: throw IllegalArgumentException("Can not find header label $headerLabel in ${table.headerToIdxMap.keys}")
 
         private fun getSpecification(key: String) = specification[key]
 
@@ -353,7 +360,6 @@ class Table internal constructor() {
         }
     }
 
-    private val headerLabels = mutableListOf<String>()
     private val headerToIdxMap = mutableMapOf<String, Int>()
     private val hints = Hints(this)
     private val rows: MutableList<Row> = mutableListOf()
@@ -367,10 +373,26 @@ class Table internal constructor() {
     fun render(out: StringBuilder = StringBuilder()): StringBuilder {
         val widths = widths()
         val columnFormats = computeColFormats(widths)
+        val headerColumnFormat = widths.mapIndexed { i, w -> "%" + hints.alignmentFormat(i) + w + "s" }
 
-        renderHeader(out, widths)
-        rows.forEach { row ->
-            row.render(out, columnFormats, widths)
+        rows.forEachIndexed { i, row ->
+            if (hints.isHeader(i)) {
+                row.render(out, headerColumnFormat, widths)
+                if (hints.borderStyle.hasRowSeparator()) {
+                    hints.leftMargin()?.also { out.append(it) }
+                    widths.forEachIndexed { index, w ->
+                        if (index > 0) {
+                            hints.borderStyle.renderConnect(out)
+                        }
+                        repeat(w) {
+                            hints.borderStyle.renderHorizontal(out)
+                        }
+                    }
+                    out.append(System.lineSeparator())
+                }
+            } else {
+                row.render(out, columnFormats, widths)
+            }
         }
         return out
     }
@@ -382,9 +404,7 @@ class Table internal constructor() {
      *
      * @return the list of labels.
      */
-    fun header(vararg labels: String) {
-        header(labels.asList())
-    }
+    fun header(vararg labels: String) = header(labels.asList())
 
     /**
      * Sets the header labels.
@@ -393,30 +413,15 @@ class Table internal constructor() {
      *
      * @return the list of labels.
      */
-    fun header(labels: List<String>) {
-        headerLabels.clear()
-        headerLabels.addAll(labels)
+    fun header(labels: List<String>): Row {
+        hints.header(rows.size)
 
-        headerToIdxMap.clear()
-        headerLabels.forEachIndexed { i, label ->
+        labels.forEachIndexed { i, label ->
             headerToIdxMap[label] = i
         }
+
+        return row(*labels.toTypedArray())
     }
-
-    /**
-     * Gets the label of the header at given index.
-     *
-     * @param columnIndex header label index
-     * @return the label or index  out of bounds exception
-     */
-    fun header(columnIndex: Int) = headerLabels[columnIndex]
-
-    /**
-     * Gets current header labels.
-     *
-     * @return a list of current header labels.
-     */
-    fun header(): List<String> = headerLabels
 
     /**
      * Sets the content values of a row.
@@ -428,6 +433,13 @@ class Table internal constructor() {
         rows.add(row)
         return row
     }
+
+    /**
+     * Gets the current rows.
+     *
+     * @return a list of rows.
+     */
+    fun rows() = rows as List<Table.Row>
 
     /**
      * DSL builder helper for hints.
@@ -448,29 +460,34 @@ class Table internal constructor() {
     }
 
     private fun widths(): IntArray {
-        val maxColumns = max(rows.map { it.values.size }.maxOrNull() ?: 0, headerLabels.size)
+        val maxColumns = rows.map { it.values.size }.maxOrNull() ?: 0
         // Headers can be empty (not set)
         val w = IntArray(maxColumns)
-        headerLabels.forEachIndexed { i, s -> w[i] = s.length }
         rows.forEachIndexed { rowIndex, r ->
             if (!hints.isLine(rowIndex)) {
+                val isHeader = hints.isHeader(rowIndex)
                 r.values.forEachIndexed { i, v ->
-                    // Headers can be not set
-                    val valueExtraLength = extraFormattedValueLength(i)
-                    val formatFlags = hints.formatFlags(i)
-                    w[i] = max(
-                        w[i],
-                        when (v) {
-                            is CharSequence -> ("%" + formatFlags + "s").format(v).length
-                            is Int -> ("%" + formatFlags + "d").format(v).length
-                            is Float -> length(v.toDouble(), hints.precision(i), formatFlags)
-                            is Double -> length(v, hints.precision(i), formatFlags)
-                            is LocalDateTime -> v.toString().length
-                            else -> {
-                                throw IllegalStateException("Value '$v' of type '${v.javaClass}' in row[$i] not supported")
-                            }
-                        } + valueExtraLength
-                    )
+                    if (isHeader) {
+                        // Header
+                        w[i] = max(w[i], v.toString().length)
+                    } else {
+                        // Headers can be not set
+                        val valueExtraLength = extraFormattedValueLength(i)
+                        val formatFlags = hints.formatFlags(i)
+                        w[i] = max(
+                            w[i],
+                            when (v) {
+                                is CharSequence -> ("%" + formatFlags + "s").format(v).length
+                                is Int -> ("%" + formatFlags + "d").format(v).length
+                                is Float -> length(v.toDouble(), hints.precision(i), formatFlags)
+                                is Double -> length(v, hints.precision(i), formatFlags)
+                                is LocalDateTime -> v.toString().length
+                                else -> {
+                                    throw IllegalStateException("Value '$v' of type '${v.javaClass}' in row[$i] not supported")
+                                }
+                            } + valueExtraLength
+                        )
+                    }
                 }
             }
         }
@@ -548,12 +565,10 @@ class Table internal constructor() {
         return columnFormats
     }
 
-    private fun findExampleRow(): Row {
-        rows.forEachIndexed { index, row ->
-            if (!hints.isLine(index)) return row
-        }
-        throw IllegalStateException("No row found in $rows that is not an unformatted 'line'")
-    }
+    private fun findExampleRow() =
+        rows.filterIndexed { index, _ -> !hints.isLine(index) && !hints.isHeader(index) }
+            .maxByOrNull { it.values.size }
+            ?: throw IllegalStateException("No row found in $rows that is not an unformatted 'line' or 'header'")
 
 
     private fun escapeForFormat(s: String) =
@@ -562,44 +577,13 @@ class Table internal constructor() {
     private fun getPrecisionFormat(columnIndex: Int) =
         hints.precisionFormat(columnIndex)
 
-    private fun renderHeader(out: StringBuilder, widths: IntArray) {
-        if (headerLabels.isEmpty()) {
-            return
-        }
-
-        hints.leftMargin()?.also { out.append(it) }
-
-        for (i in widths.indices) {
-            if (i > 0) {
-                hints.borderStyle.renderVertical(out)
-            }
-
-            val headerLabel =
-                if (i < headerLabels.size) headerLabels[i] else " " // Use empty labels for missing labels
-            out.append(("%" + hints.alignmentFormat(i) + widths[i] + "s").format(headerLabel))
-        }
-
-        if (hints.borderStyle.hasRowSeparator()) {
-            out.append(System.lineSeparator())
-            hints.leftMargin()?.also { out.append(it) }
-            widths.forEachIndexed { index, w ->
-                if (index > 0) {
-                    hints.borderStyle.renderConnect(out)
-                }
-                repeat(w) {
-                    hints.borderStyle.renderHorizontal(out)
-                }
-            }
-        }
-        out.append(System.lineSeparator())
-    }
 
     /**
      * Adds an unformatted row (aka line).
      *
      * @param content the unformatted row value.
      */
-    fun line(content: String): Row {
+    fun line(content: String = ""): Row {
         hints.line(rows.size)
         val row = Line(content)
         rows.add(row)
