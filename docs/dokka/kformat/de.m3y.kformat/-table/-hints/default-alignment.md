@@ -1,8 +1,17 @@
-[kformat](../../../index.md) / [de.m3y.kformat](../../index.md) / [Table](../index.md) / [Hints](index.md) / [defaultAlignment](./default-alignment.md)
+//[kformat](../../../index.md)/[de.m3y.kformat](../../index.md)/[Table](../index.md)/[Hints](index.md)/[defaultAlignment](default-alignment.md)
 
-# defaultAlignment
 
-`var defaultAlignment: Alignment`
+
+# defaultAlignment  
+[JVM]  
+Content  
+var [defaultAlignment](default-alignment.md): [Table.Hints.Alignment](-alignment/index.md)  
+More info  
+
 
 Defines the default horizontal cell alignment
+
+  
+
+
 

@@ -1,15 +1,38 @@
-[kformat](../../../index.md) / [de.m3y.kformat](../../index.md) / [Table](../index.md) / [Hints](index.md) / [leftMargin](./left-margin.md)
+//[kformat](../../../index.md)/[de.m3y.kformat](../../index.md)/[Table](../index.md)/[Hints](index.md)/[leftMargin](left-margin.md)
 
-# leftMargin
 
-`fun leftMargin(margin: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
-Prepends the margin value for each output row.
-Can be used to eg indent a table.
+# leftMargin  
+[JVM]  
+Content  
+fun [leftMargin](left-margin.md)(margin: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))  
+More info  
 
-### Parameters
 
-`margin` - the margin value`fun leftMargin(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+Prepends the margin value for each output row. Can be used to eg indent a table.
+
+
+
+## Parameters  
+  
+JVM  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="de.m3y.kformat/Table.Hints/leftMargin/#kotlin.String/PointingToDeclaration/"></a>margin| <a name="de.m3y.kformat/Table.Hints/leftMargin/#kotlin.String/PointingToDeclaration/"></a><br><br>the margin value<br><br>
+  
+  
+
+
+[JVM]  
+Content  
+fun [leftMargin](left-margin.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?  
+More info  
+
 
 Gets the left margin value used for indenting rendered table.
+
+  
+
+
 

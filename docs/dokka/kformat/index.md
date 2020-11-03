@@ -1,10 +1,13 @@
-[kformat](./index.md)
+//[kformat](index.md)
 
-### Packages
 
-| Name | Summary |
+
+# kformat  
+
+
+## Packages  
+  
+|  Name|  Summary| 
 |---|---|
-| [de.m3y.kformat](de.m3y.kformat/index.md) |  |
-
-### Index
+| <a name="de.m3y.kformat////PointingToDeclaration/"></a>[de.m3y.kformat](de.m3y.kformat/index.md) | 
 

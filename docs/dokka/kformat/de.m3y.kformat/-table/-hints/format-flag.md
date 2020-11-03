@@ -1,18 +1,38 @@
-[kformat](../../../index.md) / [de.m3y.kformat](../../index.md) / [Table](../index.md) / [Hints](index.md) / [formatFlag](./format-flag.md)
+//[kformat](../../../index.md)/[de.m3y.kformat](../../index.md)/[Table](../index.md)/[Hints](index.md)/[formatFlag](format-flag.md)
 
-# formatFlag
 
-`fun formatFlag(columnIndex: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, flag: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+# formatFlag  
+[JVM]  
+Content  
+fun [formatFlag](format-flag.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), flag: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))  
+More info  
+
 
 Provides a formatting flag instruction.
 
-### Parameters
 
-`columnIndex` - the columnIndex, starting at 0
 
-`flag` - the flag value, as defined in [java.util.Formatter](https://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html)
+## See also  
+  
+JVM  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="de.m3y.kformat/Table.Hints/formatFlag/#kotlin.Int#kotlin.String/PointingToDeclaration/"></a>[java.util.Formatter](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html)| <a name="de.m3y.kformat/Table.Hints/formatFlag/#kotlin.Int#kotlin.String/PointingToDeclaration/"></a>
+  
 
-**See Also**
 
-[java.util.Formatter](https://docs.oracle.com/javase/6/docs/api/java/util/Formatter.html)
+## Parameters  
+  
+JVM  
+  
+|  Name|  Summary| 
+|---|---|
+| <a name="de.m3y.kformat/Table.Hints/formatFlag/#kotlin.Int#kotlin.String/PointingToDeclaration/"></a>columnIndex| <a name="de.m3y.kformat/Table.Hints/formatFlag/#kotlin.Int#kotlin.String/PointingToDeclaration/"></a><br><br>the columnIndex, starting at 0<br><br>
+| <a name="de.m3y.kformat/Table.Hints/formatFlag/#kotlin.Int#kotlin.String/PointingToDeclaration/"></a>flag| <a name="de.m3y.kformat/Table.Hints/formatFlag/#kotlin.Int#kotlin.String/PointingToDeclaration/"></a><br><br>the flag value, as defined in [java.util.Formatter](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html)<br><br>
+  
+  
+
+
 
