@@ -11,6 +11,7 @@ Provides a DSL for simple table formatted text output.
 
 Example:
 
+```kotlin
 table {  
     header("A", "B", "C", "Long_Header")  
   
@@ -23,12 +24,15 @@ table {
         postfix("C", "%")  
     }  
 }.render(StringBuilder())
+```
 
 produces
 
+```kotlin
 A      B     C Long_Header  
 10 b...1 2.10%         foo  
-20    b2 0.33%         bar   
+20    b2 0.33%         bar
+```   
 
 
 ## Types  
@@ -46,8 +50,8 @@ A      B     C Long_Header
   
 |  Name|  Summary| 
 |---|---|
-| <a name="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"></a>[equals](-hints/index.md#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-627416167)| <a name="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>open operator fun [equals](-hints/index.md#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-627416167)(other: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)  <br><br><br>
-| <a name="kotlin/Any/hashCode/#/PointingToDeclaration/"></a>[hashCode](-hints/index.md#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-627416167)| <a name="kotlin/Any/hashCode/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>open fun [hashCode](-hints/index.md#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-627416167)(): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  <br><br><br>
+| <a name="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"></a>[equals](-hints/index.md#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-754127688)| <a name="kotlin/Any/equals/#kotlin.Any?/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>open operator fun [equals](-hints/index.md#%5Bkotlin%2FAny%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-754127688)(other: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)  <br><br><br>
+| <a name="kotlin/Any/hashCode/#/PointingToDeclaration/"></a>[hashCode](-hints/index.md#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-754127688)| <a name="kotlin/Any/hashCode/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>open fun [hashCode](-hints/index.md#%5Bkotlin%2FAny%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-754127688)(): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  <br><br><br>
 | <a name="de.m3y.kformat/Table/hasRows/#/PointingToDeclaration/"></a>[hasRows](has-rows.md)| <a name="de.m3y.kformat/Table/hasRows/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [hasRows](has-rows.md)(): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)  <br>More info  <br>Returns true if table contains at least one 'data' row.  <br><br><br>
 | <a name="de.m3y.kformat/Table/header/#kotlin.Array[kotlin.String]/PointingToDeclaration/"></a>[header](header.md)| <a name="de.m3y.kformat/Table/header/#kotlin.Array[kotlin.String]/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [header](header.md)(vararg labels: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)): [Table.Row](-row/index.md)  <br>fun [header](header.md)(labels: [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)<[String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)>): [Table.Row](-row/index.md)  <br>More info  <br>Sets the header labels.  <br><br><br>
 | <a name="de.m3y.kformat/Table/hints/#kotlin.Function1[de.m3y.kformat.Table.Hints,kotlin.Unit]/PointingToDeclaration/"></a>[hints](hints.md)| <a name="de.m3y.kformat/Table/hints/#kotlin.Function1[de.m3y.kformat.Table.Hints,kotlin.Unit]/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [hints](hints.md)(init: [Table.Hints](-hints/index.md).() -> [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)): [Table.Hints](-hints/index.md)  <br>fun [hints](hints.md)(providedSpec: [Map](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html)<[String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)>, init: [Table.Hints](-hints/index.md).() -> [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)): [Table.Hints](-hints/index.md)  <br>More info  <br>DSL builder helper for hints.  <br><br><br>
@@ -55,5 +59,5 @@ A      B     C Long_Header
 | <a name="de.m3y.kformat/Table/render/#java.lang.StringBuilder/PointingToDeclaration/"></a>[render](render.md)| <a name="de.m3y.kformat/Table/render/#java.lang.StringBuilder/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [render](render.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html) = StringBuilder()): [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html)  <br>More info  <br>Renders the content as a table.  <br><br><br>
 | <a name="de.m3y.kformat/Table/row/#kotlin.Array[kotlin.Any]/PointingToDeclaration/"></a>[row](row.md)| <a name="de.m3y.kformat/Table/row/#kotlin.Array[kotlin.Any]/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [row](row.md)(vararg values: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)): [Table.Row](-row/index.md)  <br>More info  <br>Sets the content values of a row.  <br><br><br>
 | <a name="de.m3y.kformat/Table/rows/#/PointingToDeclaration/"></a>[rows](rows.md)| <a name="de.m3y.kformat/Table/rows/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [rows](rows.md)(): [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)<[Table.Row](-row/index.md)>  <br>More info  <br>Gets the current rows.  <br><br><br>
-| <a name="kotlin/Any/toString/#/PointingToDeclaration/"></a>[toString](-hints/index.md#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-627416167)| <a name="kotlin/Any/toString/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>open fun [toString](-hints/index.md#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-627416167)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  <br><br><br>
+| <a name="kotlin/Any/toString/#/PointingToDeclaration/"></a>[toString](-hints/index.md#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-754127688)| <a name="kotlin/Any/toString/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>open fun [toString](-hints/index.md#%5Bkotlin%2FAny%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-754127688)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  <br><br><br>
 

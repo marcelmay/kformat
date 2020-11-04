@@ -15,11 +15,13 @@ Starts building a table.
 
 Usage:
 
+```kotlin
 table {  
     header("A", "B", "C")  
     row(10, "some text value", 2.1f)  
     ...  
-}.render(StringBuilder())  
+}.render(StringBuilder())
+```  
 
 
 
