@@ -7,10 +7,13 @@ import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import de.m3y.kformat.Table.Hints
 import org.junit.Test
+import java.text.DecimalFormatSymbols
 import java.time.LocalDateTime
 import java.time.Month
 
 class TableTest {
+    private val decimalSeparatorChar = DecimalFormatSymbols.getInstance().decimalSeparator
+
     @Test
     fun testRenderTable() {
         assertThat(table {
@@ -45,7 +48,7 @@ class TableTest {
             7     70 700 v7       0.70% 2019-12-10T21:07
             8     80 800 v8       0.80% 2019-12-10T21:08
             9     90 900 v9       0.90% 2019-12-10T21:09
-            """.trimIndent()
+            """.replace('.',decimalSeparatorChar).trimIndent()
         )
         assertThat(table {
             // Add the header labels
@@ -69,7 +72,7 @@ class TableTest {
 A B12345  C1 Dddddddd     Foo Bar             
 9    900 900 v9       -100.0% 2019-12-10T21:10
 9    900 900 v9         20.2% 2019-12-10T21:10
-            """.trimIndent()
+            """.replace('.',decimalSeparatorChar).trimIndent()
         )
     }
 
@@ -410,7 +413,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     ---|----|-----
                     10 | b1 | 1.50
                     20 |    |
-                    """.trimIndent()
+                    """.replace('.',decimalSeparatorChar).trimIndent()
         )
         assertThat(table {
             header("A", "B")
@@ -426,7 +429,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     ---|----|---------
                     10 | b1 | 1.500000
                     20 |    |
-                    """.trimIndent()
+                    """.replace('.',decimalSeparatorChar).trimIndent()
         )
     }
 
@@ -446,7 +449,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     A  |  B |     C
                     ---|----|------
                     10 | b1 | +1.50
-                    """.trimIndent()
+                    """.replace('.',decimalSeparatorChar).trimIndent()
         )
 
         assertThat(table {
@@ -465,7 +468,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     ---|----|------
                     10 | b1 | +1.50
                     1  | b1 | -1.33
-                    """.trimIndent()
+                    """.replace('.',decimalSeparatorChar).trimIndent()
         )
     }
 
