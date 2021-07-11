@@ -1,11 +1,6 @@
-//[kformat](../../../../index.md)/[de.m3y.kformat](../../../index.md)/[Table](../../index.md)/[Hints](../index.md)/[Key](index.md)/[ofAnyColumn](of-any-column.md)
+//[kformat](../../../../../index.md)/[de.m3y.kformat](../../../index.md)/[Table](../../index.md)/[Hints](../index.md)/[Key](index.md)/[ofAnyColumn](of-any-column.md)
 
+# ofAnyColumn
 
-
-# ofAnyColumn  
-[JVM]  
-Content  
-fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  
-
-
-
+[JVM]\
+fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)

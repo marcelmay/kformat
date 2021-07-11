@@ -1,11 +1,6 @@
-//[kformat](../../../index.md)/[de.m3y.kformat](../../index.md)/[Table](../index.md)/[BorderStyle](index.md)/[renderVertical](render-vertical.md)
+//[kformat](../../../../index.md)/[de.m3y.kformat](../../index.md)/[Table](../index.md)/[BorderStyle](index.md)/[renderVertical](render-vertical.md)
 
+# renderVertical
 
-
-# renderVertical  
-[JVM]  
-Content  
-open override fun [renderVertical](render-vertical.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html))  
-
-
-
+[JVM]\
+open override fun [renderVertical](render-vertical.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html))

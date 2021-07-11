@@ -29,7 +29,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.5.20</kotlin.version>
-        <dokka.version>1.4.10.2</dokka.version>
+        <dokka.version>1.5.0</dokka.version>
         <kotlin.code.style>official</kotlin.code.style>
     </properties>
 
@@ -104,15 +104,16 @@
                     <groupId>org.jetbrains.dokka</groupId>
                     <artifactId>dokka-maven-plugin</artifactId>
                     <version>${dokka.version}</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.jetbrains.dokka</groupId>
-                            <artifactId>gfm-plugin</artifactId>
-                            <version>${dokka.version}</version>
-                        </dependency>
-                    </dependencies>
                     <configuration>
                         <outputDir>docs/dokka</outputDir>
+                        <jdkVersion>8</jdkVersion>
+                        <dokkaPlugins>
+                            <plugin>
+                                <groupId>org.jetbrains.dokka</groupId>
+                                <artifactId>gfm-plugin</artifactId>
+                                <version>${dokka.version}</version>
+                            </plugin>
+                        </dokkaPlugins>
                     </configuration>
                 </plugin>
                 <plugin>

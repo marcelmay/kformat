@@ -55,4 +55,4 @@ mvn install dokka:dokka
 ```
 ## Copyright
 
-Copyright 2019-2020 [Marcel May](https://github.com/marcelmay)
+Copyright 2019-2021 [Marcel May](https://github.com/marcelmay)

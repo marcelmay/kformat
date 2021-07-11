@@ -1,51 +1,37 @@
-//[kformat](../../../../index.md)/[de.m3y.kformat](../../../index.md)/[Table](../../index.md)/[Hints](../index.md)/[Key](index.md)
+//[kformat](../../../../../index.md)/[de.m3y.kformat](../../../index.md)/[Table](../../index.md)/[Hints](../index.md)/[Key](index.md)
 
+# Key
 
-
-# Key  
- [JVM] enum [Key](index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)<[Table.Hints.Key](index.md)> 
+[JVM]\
+enum [Key](index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)<[Table.Hints.Key](index.md)> 
 
 Defines the (internal) hint keys.
 
-
-
 KeyFormat ::= ColumnFormat ':' KeyName ColumnFormat ::= Integer | '*' KeyName ::= 'alignment'| ....
 
-   
+## Entries
 
-
-## Entries  
-  
-|  Name|  Summary| 
+| | |
 |---|---|
-| <a name="de.m3y.kformat/Table.Hints.Key.Alignment///PointingToDeclaration/"></a>[Alignment](-alignment/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.Alignment///PointingToDeclaration/"></a> [JVM] [Alignment](-alignment/index.md)()  <br>   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key.FormatFlag///PointingToDeclaration/"></a>[FormatFlag](-format-flag/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.FormatFlag///PointingToDeclaration/"></a> [JVM] [FormatFlag](-format-flag/index.md)()  <br>   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key.Header///PointingToDeclaration/"></a>[Header](-header/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.Header///PointingToDeclaration/"></a> [JVM] [Header](-header/index.md)()  <br>   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key.LeftMargin///PointingToDeclaration/"></a>[LeftMargin](-left-margin/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.LeftMargin///PointingToDeclaration/"></a> [JVM] [LeftMargin](-left-margin/index.md)()  <br>   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key.Line///PointingToDeclaration/"></a>[Line](-line/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.Line///PointingToDeclaration/"></a> [JVM] [Line](-line/index.md)()  <br>   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key.Postfix///PointingToDeclaration/"></a>[Postfix](-postfix/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.Postfix///PointingToDeclaration/"></a> [JVM] [Postfix](-postfix/index.md)()  <br>   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key.Precision///PointingToDeclaration/"></a>[Precision](-precision/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.Precision///PointingToDeclaration/"></a> [JVM] [Precision](-precision/index.md)()  <br>   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key.Prefix///PointingToDeclaration/"></a>[Prefix](-prefix/index.md)| <a name="de.m3y.kformat/Table.Hints.Key.Prefix///PointingToDeclaration/"></a> [JVM] [Prefix](-prefix/index.md)()  <br>   <br>
+| [Prefix](-prefix/index.md) | [JVM]<br>[Prefix](-prefix/index.md)() |
+| [Precision](-precision/index.md) | [JVM]<br>[Precision](-precision/index.md)() |
+| [Postfix](-postfix/index.md) | [JVM]<br>[Postfix](-postfix/index.md)() |
+| [Line](-line/index.md) | [JVM]<br>[Line](-line/index.md)() |
+| [LeftMargin](-left-margin/index.md) | [JVM]<br>[LeftMargin](-left-margin/index.md)() |
+| [Header](-header/index.md) | [JVM]<br>[Header](-header/index.md)() |
+| [FormatFlag](-format-flag/index.md) | [JVM]<br>[FormatFlag](-format-flag/index.md)() |
+| [Alignment](-alignment/index.md) | [JVM]<br>[Alignment](-alignment/index.md)() |
 
+## Functions
 
-## Functions  
-  
-|  Name|  Summary| 
+| Name | Summary |
 |---|---|
-| <a name="kotlin/Enum/compareTo/#de.m3y.kformat.Table.Hints.Key/PointingToDeclaration/"></a>[compareTo](-prefix/index.md#%5Bkotlin%2FEnum%2FcompareTo%2F%23de.m3y.kformat.Table.Hints.Key%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)| <a name="kotlin/Enum/compareTo/#de.m3y.kformat.Table.Hints.Key/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>operator override fun [compareTo](-prefix/index.md#%5Bkotlin%2FEnum%2FcompareTo%2F%23de.m3y.kformat.Table.Hints.Key%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)(other: [Table.Hints.Key](index.md)): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  <br><br><br>
-| <a name="kotlin/Enum/equals/#kotlin.Any?/PointingToDeclaration/"></a>[equals](-prefix/index.md#%5Bkotlin%2FEnum%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)| <a name="kotlin/Enum/equals/#kotlin.Any?/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>operator override fun [equals](-prefix/index.md#%5Bkotlin%2FEnum%2Fequals%2F%23kotlin.Any%3F%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)(other: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)?): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)  <br><br><br>
-| <a name="kotlin/Enum/finalize/#/PointingToDeclaration/"></a>[finalize](-prefix/index.md#%5Bkotlin%2FEnum%2Ffinalize%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)| <a name="kotlin/Enum/finalize/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [finalize](-prefix/index.md#%5Bkotlin%2FEnum%2Ffinalize%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)()  <br><br><br>
-| <a name="kotlin/Enum/getDeclaringClass/#/PointingToDeclaration/"></a>[getDeclaringClass](-prefix/index.md#%5Bkotlin%2FEnum%2FgetDeclaringClass%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)| <a name="kotlin/Enum/getDeclaringClass/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [getDeclaringClass](-prefix/index.md#%5Bkotlin%2FEnum%2FgetDeclaringClass%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)(): [Class](https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html)<[Table.Hints.Key](index.md)>  <br><br><br>
-| <a name="kotlin/Enum/hashCode/#/PointingToDeclaration/"></a>[hashCode](-prefix/index.md#%5Bkotlin%2FEnum%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)| <a name="kotlin/Enum/hashCode/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>override fun [hashCode](-prefix/index.md#%5Bkotlin%2FEnum%2FhashCode%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)(): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)  <br><br><br>
-| <a name="de.m3y.kformat/Table.Hints.Key/ofAnyColumn/#/PointingToDeclaration/"></a>[ofAnyColumn](of-any-column.md)| <a name="de.m3y.kformat/Table.Hints.Key/ofAnyColumn/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  <br><br><br>
-| <a name="de.m3y.kformat/Table.Hints.Key/ofColumn/#kotlin.Int/PointingToDeclaration/"></a>[ofColumn](of-column.md)| <a name="de.m3y.kformat/Table.Hints.Key/ofColumn/#kotlin.Int/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>fun [ofColumn](of-column.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  <br><br><br>
-| <a name="kotlin/Enum/toString/#/PointingToDeclaration/"></a>[toString](-prefix/index.md#%5Bkotlin%2FEnum%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)| <a name="kotlin/Enum/toString/#/PointingToDeclaration/"></a>[JVM]  <br>Content  <br>open override fun [toString](-prefix/index.md#%5Bkotlin%2FEnum%2FtoString%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1268829873)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)  <br><br><br>
+| [ofAnyColumn](of-any-column.md) | [JVM]<br>fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [ofColumn](of-column.md) | [JVM]<br>fun [ofColumn](of-column.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
 
+## Properties
 
-## Properties  
-  
-|  Name|  Summary| 
+| Name | Summary |
 |---|---|
-| <a name="de.m3y.kformat/Table.Hints.Key/name/#/PointingToDeclaration/"></a>[name](name.md)| <a name="de.m3y.kformat/Table.Hints.Key/name/#/PointingToDeclaration/"></a> [JVM] val [name](name.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)   <br>
-| <a name="de.m3y.kformat/Table.Hints.Key/ordinal/#/PointingToDeclaration/"></a>[ordinal](ordinal.md)| <a name="de.m3y.kformat/Table.Hints.Key/ordinal/#/PointingToDeclaration/"></a> [JVM] val [ordinal](ordinal.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)   <br>
-
+| [name](index.md#1712321675%2FProperties%2F-1067530276) | [JVM]<br>val [name](index.md#1712321675%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [ordinal](index.md#-77225261%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](index.md#-77225261%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
