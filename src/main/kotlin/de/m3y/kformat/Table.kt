@@ -306,7 +306,7 @@ class Table internal constructor() {
 
         /**
          * Prepends the margin value for each output row.
-         * Can be used to eg indent a table.
+         * Can be used to e.g. indent a table.
          *
          * @param margin the margin value
          */
@@ -460,7 +460,7 @@ class Table internal constructor() {
     }
 
     private fun widths(): IntArray {
-        val maxColumns = rows.map { it.values.size }.maxOrNull() ?: 0
+        val maxColumns = rows.maxOfOrNull { it.values.size } ?: 0
         // Headers can be empty (not set)
         val w = IntArray(maxColumns)
         rows.forEachIndexed { rowIndex, r ->
