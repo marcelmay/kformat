@@ -3,7 +3,7 @@
 # Key
 
 [JVM]\
-enum [Key](index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)<[Table.Hints.Key](index.md)> 
+enum [Key](index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;[Table.Hints.Key](index.md)&gt; 
 
 Defines the (internal) hint keys.
 
@@ -33,5 +33,5 @@ KeyFormat ::= ColumnFormat ':' KeyName ColumnFormat ::= Integer | '*' KeyName ::
 
 | Name | Summary |
 |---|---|
-| [name](index.md#1712321675%2FProperties%2F-1067530276) | [JVM]<br>val [name](index.md#1712321675%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [ordinal](index.md#-77225261%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](index.md#-77225261%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [name](-alignment/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](-alignment/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [ordinal](-alignment/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](-alignment/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |

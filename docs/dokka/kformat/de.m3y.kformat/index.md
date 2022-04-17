@@ -12,4 +12,4 @@
 
 | Name | Summary |
 |---|---|
-| [table](table.md) | [JVM]<br>fun [table](table.md)(init: [Table](-table/index.md).() -> [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)): [Table](-table/index.md)<br>Starts building a table. |
+| [table](table.md) | [JVM]<br>fun [table](table.md)(init: [Table](-table/index.md).() -&gt; [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)): [Table](-table/index.md)<br>Starts building a table. |

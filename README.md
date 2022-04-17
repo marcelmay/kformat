@@ -51,8 +51,9 @@ Download from [Maven Central](https://search.maven.org/search?q=g:de.m3y.kformat
 
 ## Building
 ```bash
-mvn install dokka:dokka
+mvn install
+mvn dokka:dokka -Pgithub-pages
 ```
 ## Copyright
 
-Copyright 2019-2021 [Marcel May](https://github.com/marcelmay)
+Copyright 2019-2022 [Marcel May](https://github.com/marcelmay)

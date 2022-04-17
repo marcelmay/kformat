@@ -21,4 +21,4 @@ Renders a border.
 
 | Name |
 |---|
-| [Table](../-border-style/index.md) |
+| [BorderStyle](../-border-style/index.md) |

@@ -3,7 +3,7 @@
 # Hints
 
 [JVM]\
-class [Hints](index.md)(**table**: [Table](../index.md), **defaultAlignment**: [Table.Hints.Alignment](-alignment/index.md), **borderStyle**: [Table.BorderRenderer](../-border-renderer/index.md))
+class [Hints](index.md)(table: [Table](../index.md), var defaultAlignment: [Table.Hints.Alignment](-alignment/index.md) = Alignment.RIGHT, var borderStyle: [Table.BorderRenderer](../-border-renderer/index.md) = NONE)
 
 Holds additional hints for rendering cells, such as cell content alignment.
 
@@ -17,8 +17,8 @@ Holds additional hints for rendering cells, such as cell content alignment.
 
 | Name | Summary |
 |---|---|
-| [Alignment](-alignment/index.md) | [JVM]<br>enum [Alignment](-alignment/index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)<[Table.Hints.Alignment](-alignment/index.md)> <br>Defines the content alignment. |
-| [Key](-key/index.md) | [JVM]<br>enum [Key](-key/index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)<[Table.Hints.Key](-key/index.md)> <br>Defines the (internal) hint keys. |
+| [Alignment](-alignment/index.md) | [JVM]<br>enum [Alignment](-alignment/index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;[Table.Hints.Alignment](-alignment/index.md)&gt; <br>Defines the content alignment. |
+| [Key](-key/index.md) | [JVM]<br>enum [Key](-key/index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;[Table.Hints.Key](-key/index.md)&gt; <br>Defines the (internal) hint keys. |
 
 ## Functions
 
@@ -26,7 +26,7 @@ Holds additional hints for rendering cells, such as cell content alignment.
 |---|---|
 | [alignment](alignment.md) | [JVM]<br>fun [alignment](alignment.md)(headerColumnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), alignment: [Table.Hints.Alignment](-alignment/index.md))<br>Defines the alignment of a column specified by the header column index.<br>[JVM]<br>fun [alignment](alignment.md)(headerLabel: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), alignment: [Table.Hints.Alignment](-alignment/index.md))<br>Defines the alignment of a column specified by the header label. |
 | [formatFlag](format-flag.md) | [JVM]<br>fun [formatFlag](format-flag.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), flag: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))<br>Provides a formatting flag instruction. |
-| [leftMargin](left-margin.md) | [JVM]<br>fun [leftMargin](left-margin.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?<br>Gets the left margin value used for indenting rendered table.<br>[JVM]<br>fun [leftMargin](left-margin.md)(margin: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))<br>Prepends the margin value for each output row. |
+| [leftMargin](left-margin.md) | [JVM]<br>fun [leftMargin](left-margin.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)?<br>Gets the left margin value used for indenting rendered table.<br>[JVM]<br>fun [leftMargin](left-margin.md)(margin: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))<br>Prepends the margin value for each output row. Can be used to e.g. indent a table. |
 | [postfix](postfix.md) | [JVM]<br>fun [postfix](postfix.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Gets the postfix for given column, or an empty string if not set.<br>[JVM]<br>fun [postfix](postfix.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), postfix: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))<br>Defines a postfix for a column specified by the column index.<br>[JVM]<br>fun [postfix](postfix.md)(headerLabel: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), postfix: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))<br>Defines a postfix for a column specified by the header label. |
 | [precision](precision.md) | [JVM]<br>fun [precision](precision.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), value: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html))<br>Defines the floating point precision of a column specified by the header column index.<br>[JVM]<br>fun [precision](precision.md)(headerLabel: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), value: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html))<br>Defines the floating point precision of a column specified by the header label. |
 | [prefix](prefix.md) | [JVM]<br>fun [prefix](prefix.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Gets the prefix value for given column.<br>[JVM]<br>fun [prefix](prefix.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), prefix: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))<br>Defines a prefix for a column specified by the column index.<br>[JVM]<br>fun [prefix](prefix.md)(headerLabel: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), prefix: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))<br>Defines a prefix for a column specified by the header label. |

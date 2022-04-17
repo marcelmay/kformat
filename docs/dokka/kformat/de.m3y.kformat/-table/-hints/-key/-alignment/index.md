@@ -16,5 +16,5 @@
 
 | Name | Summary |
 |---|---|
-| [name](name.md) | [JVM]<br>val [name](name.md): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [ordinal](ordinal.md) | [JVM]<br>val [ordinal](ordinal.md): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [name](index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [ordinal](index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |

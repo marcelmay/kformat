@@ -3,7 +3,7 @@
 # BorderStyle
 
 [JVM]\
-open class [BorderStyle](index.md)(**columnSeparator**: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), **rowSeparator**: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), **connectSeparator**: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)) : [Table.BorderRenderer](../-border-renderer/index.md)
+open class [BorderStyle](index.md)(columnSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), rowSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), connectSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = columnSeparator) : [Table.BorderRenderer](../-border-renderer/index.md)
 
 Renders borders with [NONE](-companion/-n-o-n-e.md) and [SINGLE_LINE](-companion/-s-i-n-g-l-e_-l-i-n-e.md) implementations for a table.
 
