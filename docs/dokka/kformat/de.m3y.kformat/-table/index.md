@@ -16,6 +16,7 @@ Provides a DSL for simple table formatted text output.
 
 Example:
 
+```kotlin
 table {\
     header(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;Long_Header&quot;)\
 \
@@ -28,12 +29,15 @@ table {\
         postfix(&quot;C&quot;, &quot;%&quot;)\
     }\
 }.render(StringBuilder())
+```
 
 produces
 
+```kotlin
 A      B     C Long_Header\
 10 b...1 2.10%         foo\
 20    b2 0.33%         bar
+```
 
 ## Types
 

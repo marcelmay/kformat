@@ -9,8 +9,10 @@ Starts building a table.
 
 Usage:
 
+```kotlin
 table {\
     header(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)\
     row(10, &quot;some text value&quot;, 2.1f)\
     ...\
 }.render(StringBuilder())
+```
