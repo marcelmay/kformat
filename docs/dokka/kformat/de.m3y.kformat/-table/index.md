@@ -17,26 +17,26 @@ Provides a DSL for simple table formatted text output.
 Example:
 
 ```kotlin
-table {\
-    header(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;Long_Header&quot;)\
-\
-    row(10, &quot;b...1&quot;, 2.1f, &quot;foo&quot;)\
-    row(20, &quot;b2&quot;, 1 / 3f, &quot;bar&quot;)\
-\
-    hints {\
-        alignment(&quot;A&quot;, Hints.Alignment.LEFT)\
-        precision(&quot;C&quot;, 2)\
-        postfix(&quot;C&quot;, &quot;%&quot;)\
-    }\
+table {
+    header("A", "B", "C", "Long_Header")
+    row(10, "b...1", 2.1f, "foo")
+    row(20, "b2", 1 / 3f, "bar")
+    hints {
+        alignment("A", Hints.Alignment.LEFT)
+        precision("C", 2)
+        postfix("C", "%")
+    }
 }.render(StringBuilder())
+
 ```
 
 produces
 
-```kotlin
-A      B     C Long_Header\
-10 b...1 2.10%         foo\
+```
+A      B     C Long_Header
+10 b...1 2.10%         foo
 20    b2 0.33%         bar
+
 ```
 
 ## Types
