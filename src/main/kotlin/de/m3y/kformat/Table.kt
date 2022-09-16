@@ -479,12 +479,12 @@ class Table internal constructor() {
                             when (v) {
                                 is CharSequence -> ("%" + formatFlags + "s").format(v).length
                                 is Int -> ("%" + formatFlags + "d").format(v).length
+                                is Long -> ("%" + formatFlags + "d").format(v).length
+                                is Boolean -> ("%" + formatFlags + "b").format(v).length
                                 is Float -> length(v.toDouble(), hints.precision(i), formatFlags)
                                 is Double -> length(v, hints.precision(i), formatFlags)
                                 is LocalDateTime -> v.toString().length
-                                else -> {
-                                    throw IllegalStateException("Value '$v' of type '${v.javaClass}' in row[$i] not supported")
-                                }
+                                else -> v.toString().length
                             } + valueExtraLength
                         )
                     }
@@ -543,14 +543,12 @@ class Table internal constructor() {
                 when (v) {
                     is CharSequence -> formatSpec.append("s")
                     is Int -> formatSpec.append("d")
+                    is Long -> formatSpec.append("d")
+                    is Boolean -> formatSpec.append("b")
                     is Float, is Double -> formatSpec.append(getPrecisionFormat(columnIndex)).append("f")
                     // 2019-10-25T10:03:13.000+02:00
                     is LocalDateTime -> formatSpec.append("s")
-                    else -> {
-                        throw IllegalArgumentException(
-                            "Unsupported value '$v' of type '${v.javaClass}' in row[$columnIndex]"
-                        )
-                    }
+                    else -> formatSpec.append("s")
                 }
 
                 // Postfix

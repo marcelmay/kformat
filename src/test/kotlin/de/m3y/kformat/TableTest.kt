@@ -523,6 +523,25 @@ A B12345  C1 Dddddddd     Foo Bar
             """.trimIndent()
         )
     }
+
+    @Test
+    fun testAnyRowType() {
+        data class Dummy(val a: Long)
+
+        assertThat(table {
+            row(10L, true, false, Dummy(1))
+
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+            }
+        }.render().trim()).isEqualTo(
+            """
+            10 | true | false | Dummy(a=1)
+            """.trimIndent()
+        )
+    }
 }
 
 fun main() {
