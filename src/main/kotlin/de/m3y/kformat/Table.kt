@@ -2,6 +2,7 @@ package de.m3y.kformat
 
 import de.m3y.kformat.Table.BorderStyle.Companion.NONE
 import de.m3y.kformat.Table.BorderStyle.Companion.SINGLE_LINE
+import java.io.PrintStream
 import java.time.LocalDateTime
 import kotlin.math.max
 
@@ -395,6 +396,22 @@ class Table internal constructor() {
             }
         }
         return out
+    }
+
+    /**
+     * Renders this table to a formatted string.
+     */
+    override fun toString(): String {
+        return render().toString()
+    }
+
+    /**
+     * Prints this table to a stream
+     *
+     * [printStream] stream to print to. Defaults to System.out
+     */
+    fun print(printStream: PrintStream = System.out) {
+        printStream.println(toString())
     }
 
     /**
