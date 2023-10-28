@@ -7,7 +7,7 @@ fun [prefix](prefix.md)(headerLabel: [String](https://kotlinlang.org/api/latest/
 
 Defines a prefix for a column specified by the header label.
 
-## Parameters
+#### Parameters
 
 JVM
 
@@ -21,7 +21,7 @@ fun [prefix](prefix.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm
 
 Defines a prefix for a column specified by the column index.
 
-## Parameters
+#### Parameters
 
 JVM
 

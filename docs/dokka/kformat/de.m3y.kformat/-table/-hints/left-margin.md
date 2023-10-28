@@ -7,7 +7,7 @@ fun [leftMargin](left-margin.md)(margin: [String](https://kotlinlang.org/api/lat
 
 Prepends the margin value for each output row. Can be used to e.g. indent a table.
 
-## Parameters
+#### Parameters
 
 JVM
 

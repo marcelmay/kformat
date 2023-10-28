@@ -7,15 +7,7 @@ fun [formatFlag](format-flag.md)(columnIndex: [Int](https://kotlinlang.org/api/l
 
 Provides a formatting flag instruction.
 
-## See also
-
-JVM
-
-| | |
-|---|---|
-| [java.util.Formatter](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html) |  |
-
-## Parameters
+#### Parameters
 
 JVM
 
@@ -23,3 +15,9 @@ JVM
 |---|---|
 | columnIndex | the columnIndex, starting at 0 |
 | flag | the flag value, as defined in [java.util.Formatter](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html) |
+
+#### See also
+
+| |
+|---|
+| [Formatter](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html) |

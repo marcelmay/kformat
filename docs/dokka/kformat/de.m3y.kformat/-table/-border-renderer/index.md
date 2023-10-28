@@ -2,10 +2,15 @@
 
 # BorderRenderer
 
-[JVM]\
 interface [BorderRenderer](index.md)
 
 Renders a border.
+
+#### Inheritors
+
+| |
+|---|
+| [BorderStyle](../-border-style/index.md) |
 
 ## Functions
 
@@ -16,9 +21,3 @@ Renders a border.
 | [renderConnect](render-connect.md) | [JVM]<br>abstract fun [renderConnect](render-connect.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html)) |
 | [renderHorizontal](render-horizontal.md) | [JVM]<br>abstract fun [renderHorizontal](render-horizontal.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html)) |
 | [renderVertical](render-vertical.md) | [JVM]<br>abstract fun [renderVertical](render-vertical.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html)) |
-
-## Inheritors
-
-| Name |
-|---|
-| [BorderStyle](../-border-style/index.md) |

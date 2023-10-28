@@ -12,7 +12,7 @@ fun [postfix](postfix.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/j
 
 Defines a postfix for a column specified by the column index.
 
-## Parameters
+#### Parameters
 
 JVM
 
@@ -30,7 +30,7 @@ Gets the postfix for given column, or an empty string if not set.
 
 the postfix value or empty string (if not set)
 
-## Parameters
+#### Parameters
 
 JVM
 

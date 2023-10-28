@@ -11,7 +11,7 @@ Renders borders with [NONE](-companion/-n-o-n-e.md) and [SINGLE_LINE](-companion
 
 | | |
 |---|---|
-| [BorderStyle](-border-style.md) | [JVM]<br>fun [BorderStyle](-border-style.md)(columnSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), rowSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), connectSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = columnSeparator) |
+| [BorderStyle](-border-style.md) | [JVM]<br>constructor(columnSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), rowSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), connectSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = columnSeparator) |
 
 ## Types
 

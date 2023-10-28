@@ -12,7 +12,7 @@ fun [hints](hints.md)(providedSpec: [Map](https://kotlinlang.org/api/latest/jvm/
 
 DSL builder helper for hints.
 
-## Parameters
+#### Parameters
 
 JVM
 

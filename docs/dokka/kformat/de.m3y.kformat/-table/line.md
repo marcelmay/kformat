@@ -7,7 +7,7 @@ fun [line](line.md)(content: [String](https://kotlinlang.org/api/latest/jvm/stdl
 
 Adds an unformatted row (aka line).
 
-## Parameters
+#### Parameters
 
 JVM
 

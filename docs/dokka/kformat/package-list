@@ -21,6 +21,9 @@ $dokka.location:de.m3y.kformat/Table.BorderStyle/renderVertical/#java.lang.Strin
 $dokka.location:de.m3y.kformat/Table.Hints.Alignment.LEFT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-alignment/-l-e-f-t/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Alignment.RIGHT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-alignment/-r-i-g-h-t/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Alignment///PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-alignment/index.md
+$dokka.location:de.m3y.kformat/Table.Hints.Alignment/entries/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-alignment/entries.md
+$dokka.location:de.m3y.kformat/Table.Hints.Alignment/valueOf/#kotlin.String/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-alignment/value-of.md
+$dokka.location:de.m3y.kformat/Table.Hints.Alignment/values/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-alignment/values.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Alignment///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-alignment/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.FormatFlag///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-format-flag/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Header///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-header/index.md
@@ -30,8 +33,11 @@ $dokka.location:de.m3y.kformat/Table.Hints.Key.Postfix///PointingToDeclaration/{
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Precision///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-precision/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Prefix///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-prefix/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key///PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/index.md
+$dokka.location:de.m3y.kformat/Table.Hints.Key/entries/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/entries.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key/ofAnyColumn/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/of-any-column.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key/ofColumn/#kotlin.Int/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/of-column.md
+$dokka.location:de.m3y.kformat/Table.Hints.Key/valueOf/#kotlin.String/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/value-of.md
+$dokka.location:de.m3y.kformat/Table.Hints.Key/values/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/values.md
 $dokka.location:de.m3y.kformat/Table.Hints///PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/index.md
 $dokka.location:de.m3y.kformat/Table.Hints/Hints/#de.m3y.kformat.Table#de.m3y.kformat.Table.Hints.Alignment#de.m3y.kformat.Table.BorderRenderer/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-hints.md
 $dokka.location:de.m3y.kformat/Table.Hints/alignment/#kotlin.Int#de.m3y.kformat.Table.Hints.Alignment/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/alignment.md
@@ -64,8 +70,10 @@ $dokka.location:de.m3y.kformat/Table/header/#kotlin.collections.List[kotlin.Stri
 $dokka.location:de.m3y.kformat/Table/hints/#kotlin.Function1[de.m3y.kformat.Table.Hints,kotlin.Unit]/PointingToDeclaration/kformat/de.m3y.kformat/-table/hints.md
 $dokka.location:de.m3y.kformat/Table/hints/#kotlin.collections.Map[kotlin.String,kotlin.Any]#kotlin.Function1[de.m3y.kformat.Table.Hints,kotlin.Unit]/PointingToDeclaration/kformat/de.m3y.kformat/-table/hints.md
 $dokka.location:de.m3y.kformat/Table/line/#kotlin.String/PointingToDeclaration/kformat/de.m3y.kformat/-table/line.md
+$dokka.location:de.m3y.kformat/Table/print/#java.io.PrintStream/PointingToDeclaration/kformat/de.m3y.kformat/-table/print.md
 $dokka.location:de.m3y.kformat/Table/render/#java.lang.StringBuilder/PointingToDeclaration/kformat/de.m3y.kformat/-table/render.md
 $dokka.location:de.m3y.kformat/Table/row/#kotlin.Array[kotlin.Any]/PointingToDeclaration/kformat/de.m3y.kformat/-table/row.md
 $dokka.location:de.m3y.kformat/Table/rows/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/rows.md
+$dokka.location:de.m3y.kformat/Table/toString/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/to-string.md
 de.m3y.kformat
 

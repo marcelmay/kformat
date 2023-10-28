@@ -1,6 +1,6 @@
 //[kformat](../../index.md)/[de.m3y.kformat](index.md)
 
-# Package de.m3y.kformat
+# Package-level declarations
 
 ## Types
 

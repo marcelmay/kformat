@@ -15,5 +15,4 @@ table {
     row(10, "some text value", 2.1f)
     ...
 }.render(StringBuilder())
-
 ```

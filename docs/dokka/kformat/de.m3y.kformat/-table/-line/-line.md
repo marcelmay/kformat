@@ -3,4 +3,4 @@
 # Line
 
 [JVM]\
-fun [Line](-line.md)(value: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))
+constructor(value: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))

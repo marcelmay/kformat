@@ -3,4 +3,4 @@
 # BorderStyle
 
 [JVM]\
-fun [BorderStyle](-border-style.md)(columnSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), rowSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), connectSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = columnSeparator)
+constructor(columnSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), rowSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), connectSeparator: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = columnSeparator)

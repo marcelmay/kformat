@@ -11,7 +11,13 @@ A line is a special row containing a single value which spans all columns and re
 
 | | |
 |---|---|
-| [Line](-line.md) | [JVM]<br>fun [Line](-line.md)(value: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)) |
+| [Line](-line.md) | [JVM]<br>constructor(value: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)) |
+
+## Properties
+
+| Name | Summary |
+|---|---|
+| [values](../-row/values.md) | [JVM]<br>val [values](../-row/values.md): [MutableList](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)&lt;[Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)&gt;<br>The values in this row. Can be used for dynamically appending additional values. |
 
 ## Functions
 
@@ -19,9 +25,3 @@ A line is a special row containing a single value which spans all columns and re
 |---|---|
 | [render](render.md) | [JVM]<br>open override fun [render](render.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html), formatSpecs: [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)&lt;[String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)&gt;, widths: [IntArray](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html))<br>Renders the row values using provided value format specifiers |
 | [toString](../-row/to-string.md) | [JVM]<br>open override fun [toString](../-row/to-string.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-
-## Properties
-
-| Name | Summary |
-|---|---|
-| [values](../-row/values.md) | [JVM]<br>val [values](../-row/values.md): [MutableList](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html)&lt;[Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)&gt;<br>The values in this row. Can be used for dynamically appending additional values. |

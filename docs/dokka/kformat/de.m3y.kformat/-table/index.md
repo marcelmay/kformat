@@ -19,24 +19,24 @@ Example:
 ```kotlin
 table {
     header("A", "B", "C", "Long_Header")
+
     row(10, "b...1", 2.1f, "foo")
     row(20, "b2", 1 / 3f, "bar")
+
     hints {
         alignment("A", Hints.Alignment.LEFT)
         precision("C", 2)
         postfix("C", "%")
     }
 }.render(StringBuilder())
-
 ```
 
 produces
 
-```
+```kotlin
 A      B     C Long_Header
 10 b...1 2.10%         foo
 20    b2 0.33%         bar
-
 ```
 
 ## Types
@@ -57,6 +57,8 @@ A      B     C Long_Header
 | [header](header.md) | [JVM]<br>fun [header](header.md)(vararg labels: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)): [Table.Row](-row/index.md)<br>fun [header](header.md)(labels: [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)&lt;[String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)&gt;): [Table.Row](-row/index.md)<br>Sets the header labels. |
 | [hints](hints.md) | [JVM]<br>fun [hints](hints.md)(init: [Table.Hints](-hints/index.md).() -&gt; [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)): [Table.Hints](-hints/index.md)<br>fun [hints](hints.md)(providedSpec: [Map](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html)&lt;[String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html), [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)&gt;, init: [Table.Hints](-hints/index.md).() -&gt; [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)): [Table.Hints](-hints/index.md)<br>DSL builder helper for hints. |
 | [line](line.md) | [JVM]<br>fun [line](line.md)(content: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) = &quot;&quot;): [Table.Row](-row/index.md)<br>Adds an unformatted row (aka line). |
+| [print](print.md) | [JVM]<br>fun [print](print.md)(printStream: [PrintStream](https://docs.oracle.com/javase/8/docs/api/java/io/PrintStream.html) = System.out)<br>Prints this table to a stream |
 | [render](render.md) | [JVM]<br>fun [render](render.md)(out: [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html) = StringBuilder()): [StringBuilder](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-string-builder/index.html)<br>Renders the content as a table. |
 | [row](row.md) | [JVM]<br>fun [row](row.md)(vararg values: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)): [Table.Row](-row/index.md)<br>Sets the content values of a row. |
 | [rows](rows.md) | [JVM]<br>fun [rows](rows.md)(): [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)&lt;[Table.Row](-row/index.md)&gt;<br>Gets the current rows. |
+| [toString](to-string.md) | [JVM]<br>open override fun [toString](to-string.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>Renders this table to a formatted string. |
