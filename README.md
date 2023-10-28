@@ -3,6 +3,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/de.m3y.kformat/kformat.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22de.m3y.kformat%22%20AND%20a%3A%22kformat%22)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 ![Pure Java + Kotlin](https://img.shields.io/badge/100%25-java%2bkotlin-orange.svg)
+[![CI](https://github.com/marcelmay/kformat/actions/workflows/ci.yml/badge.svg)](https://github.com/marcelmay/kformat/actions/workflows/ci.yml)
 
 KFormat is a tiny Kotlin library for formatted text output such as printing values in a structured table.
 Typical use cases include CLI tool development.
