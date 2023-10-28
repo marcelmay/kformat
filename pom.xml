@@ -29,7 +29,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.9.10</kotlin.version>
-        <dokka.version>1.6.20</dokka.version>
+        <dokka.version>1.9.10</dokka.version>
         <kotlin.code.style>official</kotlin.code.style>
     </properties>
 
