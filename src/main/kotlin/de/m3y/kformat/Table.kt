@@ -104,7 +104,16 @@ class Table internal constructor() {
                 if (i < values.size) {
                     val columnValue = values[i]
                     try {
-                        out.append(formatSpecs[i].format(columnValue))
+                        // 1st phase : Render value
+                        val valueRendered = formatSpecs[i].format(columnValue)
+                        out.append(
+                            // 2nd phase: Align rendered value in cell of given width
+                            when (hints.alignment(i)) {
+                                Hints.Alignment.CENTER -> padCenter(valueRendered, w)
+                                Hints.Alignment.LEFT -> valueRendered.padEnd(w)
+                                Hints.Alignment.RIGHT -> valueRendered.padStart(w)
+                            }
+                        )
                     } catch (e: java.util.IllegalFormatConversionException) {
                         throw IllegalArgumentException(
                             "Can not format value '$columnValue' of type '${columnValue.javaClass} 'using " +
@@ -120,9 +129,12 @@ class Table internal constructor() {
             out.append(System.lineSeparator()) // Row ends with end-of-line
         }
 
-        override fun toString(): String {
-            return "Row(values=$values)"
+        private fun padCenter(text: String, width: Int): String {
+            val n = text.length + (width - text.length) / 2
+            return text.padEnd(n).padStart(width)
         }
+
+        override fun toString() = "Row(values=$values)"
     }
 
     /**
@@ -151,11 +163,9 @@ class Table internal constructor() {
     ) {
         /** Defines the content alignment. */
         enum class Alignment {
-            /** Align to the left */
             LEFT,
-
-            /** Align to the right */
-            RIGHT
+            RIGHT,
+            CENTER
         }
 
         /**
@@ -197,17 +207,12 @@ class Table internal constructor() {
             updateSpecification(Key.Alignment.ofColumn(headerColumnIndex), alignment)
         }
 
-        internal fun formatFlagOptions(columnIndex: Int): String =
-            alignmentFormat(columnIndex) + formatFlags(columnIndex)
-
         internal fun formatFlags(columnIndex: Int) =
             specification[Key.FormatFlag.ofColumn(columnIndex)] as String? ?: ""
 
-        internal fun alignmentFormat(columnIndex: Int) =
-            when (getSpecification(Key.Alignment.ofColumn(columnIndex)) as Alignment? ?: defaultAlignment) {
-                Alignment.RIGHT -> ""
-                Alignment.LEFT -> "-"
-            }
+
+        fun alignment(columnIndex: Int) =
+            getSpecification(Key.Alignment.ofColumn(columnIndex)) as Alignment? ?: defaultAlignment
 
         /**
          * Defines the floating point precision of a column specified by the header label.
@@ -368,8 +373,8 @@ class Table internal constructor() {
      */
     fun render(out: StringBuilder = StringBuilder()): StringBuilder {
         val widths = widths()
-        val columnFormats = computeColFormats(widths)
-        val headerColumnFormat = widths.mapIndexed { i, w -> "%" + hints.alignmentFormat(i) + w + "s" }
+        val columnFormats = computeColFormats()
+        val headerColumnFormat = widths.map { "%s" }
 
         rows.forEachIndexed { i, row ->
             if (hints.isHeader(i)) {
@@ -531,9 +536,9 @@ class Table internal constructor() {
         return false
     }
 
-    private fun computeColFormats(widths: IntArray): List<String> {
+    private fun computeColFormats(): List<String> {
         val columnFormats = mutableListOf<String>()
-        if (hasRows()) { // Only compute widths if formatted rows exist. 'line' row is not formatted.
+        if (hasRows()) { // Only compute widths if formatted rows exist. 'Line' row is not formatted.
             val exampleRow = findExampleRow()
             exampleRow.values.forEachIndexed { columnIndex, v ->
                 val formatSpec = StringBuilder()
@@ -544,14 +549,9 @@ class Table internal constructor() {
                     formatSpec.append(prefix)
                 }
 
-                val flags = hints.formatFlagOptions(columnIndex)
+                val flags = hints.formatFlags(columnIndex)
                 formatSpec.append("%")
                     .append(flags)
-                    .append(
-                        widths[columnIndex] - hints.prefixLengthIncrement(columnIndex) - hints.postfixLengthIncrement(
-                            columnIndex
-                        )
-                    )
                 when (v) {
                     is CharSequence -> formatSpec.append("s")
                     is Int -> formatSpec.append("d")

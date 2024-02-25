@@ -80,44 +80,55 @@ A B12345  C1 Dddddddd     Foo Bar
     fun testRenderAlignment() {
         // Smaller headers
         assertThat(table {
-            header("A", "B", "C")
+            header("A", "B", "C", "D", "F")
 
-            row(10, "b1", "c1")
-            row(20, "b2", "c2")
+            row(10, "b1", "c1", "ddd1", "fff")
+            row(20, "b2", "c2", "d2", "f")
 
             hints {
-                assertThat(specification[Hints.Key.Alignment.ofColumn(0)]).isNull()
                 alignment("A", Hints.Alignment.LEFT)
                 assertThat(specification[Hints.Key.Alignment.ofColumn(0)]).isEqualTo(Hints.Alignment.LEFT)
 
-                assertThat(specification[Hints.Key.Alignment.ofColumn(1)]).isNull()
                 alignment("B", Hints.Alignment.RIGHT)
                 assertThat(specification[Hints.Key.Alignment.ofColumn(1)]).isEqualTo(Hints.Alignment.RIGHT)
+
+                alignment("C", Hints.Alignment.CENTER)
+                assertThat(specification[Hints.Key.Alignment.ofColumn(2)]).isEqualTo(Hints.Alignment.CENTER)
+
+                alignment("D", Hints.Alignment.CENTER)
+                assertThat(specification[Hints.Key.Alignment.ofColumn(3)]).isEqualTo(Hints.Alignment.CENTER)
+
+                alignment("F", Hints.Alignment.CENTER)
+                assertThat(specification[Hints.Key.Alignment.ofColumn(4)]).isEqualTo(Hints.Alignment.CENTER)
             }
         }.render().trim()).isEqualTo(
             """
-            A   B  C
-            10 b1 c1
-            20 b2 c2
+            A   B  C   D   F 
+            10 b1 c1 ddd1 fff
+            20 b2 c2  d2   f
             """.trimIndent()
         )
 
         // Longer headers
         assertThat(table {
-            header("__A", "B__", "__C")
+            header("A__", "__B", "_C_", "__D_", "__E__", "___F__")
 
-            row(10, "b1", "c1")
-            row(20, "b2", "c2")
+            row(10, "b1", "c1", "d1", "e1", "f1")
+            row(20, "b2", "c2", "d2", "e2", "f2")
 
             hints {
-                alignment("__A", Hints.Alignment.LEFT)
-                alignment("B__", Hints.Alignment.RIGHT)
+                alignment("A__", Hints.Alignment.LEFT)
+                alignment("__B", Hints.Alignment.RIGHT)
+                alignment("_C_", Hints.Alignment.CENTER)
+                alignment("__D_", Hints.Alignment.CENTER)
+                alignment("__E__", Hints.Alignment.CENTER)
+                alignment("___F__", Hints.Alignment.CENTER)
             }
         }.render().trim()).isEqualTo(
             """
-            __A B__ __C
-            10   b1  c1
-            20   b2  c2
+            A__ __B _C_ __D_ __E__ ___F__
+            10   b1  c1  d1    e1    f1  
+            20   b2  c2  d2    e2    f2
             """.trimIndent()
         )
     }
