@@ -57,4 +57,4 @@ mvn dokka:dokka -Pgithub-pages
 ```
 ## Copyright
 
-Copyright 2019-2022 [Marcel May](https://github.com/marcelmay)
+Copyright 2019-2024 [Marcel May](https://github.com/marcelmay)

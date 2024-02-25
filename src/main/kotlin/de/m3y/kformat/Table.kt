@@ -163,7 +163,7 @@ class Table internal constructor() {
          *
          * KeyFormat ::= ColumnFormat ':' KeyName
          * ColumnFormat ::= Integer | '*'
-         * KeyName ::= 'alignment'| ....
+         * KeyName ::= 'alignment'| ...
          */
         enum class Key {
             Alignment,
@@ -227,21 +227,17 @@ class Table internal constructor() {
         internal fun precision(columnIndex: Int) =
             getSpecification(Key.Precision.ofColumn(columnIndex)) as Int? ?: 0
 
-        internal fun precisionFormat(columnIndex: Int): String {
-            val p = getSpecification(Key.Precision.ofColumn(columnIndex))
-            return if (p != null) {
-                "." + p
-            } else {
-                ""
+        internal fun precisionFormat(columnIndex: Int) =
+            when (val p = getSpecification(Key.Precision.ofColumn(columnIndex))) {
+                null -> ""
+                else -> ".$p"
             }
-        }
 
         /**
          * Defines a postfix for a column specified by the header label.
          */
-        fun postfix(headerLabel: String, postfix: String) {
+        fun postfix(headerLabel: String, postfix: String) =
             postfix(columnIndex(headerLabel), postfix)
-        }
 
         /**
          * Defines a postfix for a column specified by the column index.
@@ -249,9 +245,8 @@ class Table internal constructor() {
          * @param columnIndex the columnIndex, starting at 0
          * @param postfix the value to be post-fixed to each row value and given column index.
          */
-        fun postfix(columnIndex: Int, postfix: String) {
+        fun postfix(columnIndex: Int, postfix: String) =
             updateSpecification(Key.Postfix.ofColumn(columnIndex), postfix)
-        }
 
         /**
          * Gets the postfix for given column, or an empty string if not set.
@@ -307,7 +302,7 @@ class Table internal constructor() {
 
         /**
          * Prepends the margin value for each output row.
-         * Can be used to e.g. indent a table.
+         * Can be  e.g. used to indent a table.
          *
          * @param margin the margin value
          */
@@ -408,7 +403,7 @@ class Table internal constructor() {
     /**
      * Prints this table to a stream
      *
-     * [printStream] stream to print to. Defaults to System.out
+     * @param printStream stream to print to. Defaults to System.out
      */
     fun print(printStream: PrintStream = System.out) {
         printStream.println(toString())
