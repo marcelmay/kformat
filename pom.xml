@@ -226,6 +226,8 @@
                 </executions>
                 <configuration>
                     <jvmTarget>1.8</jvmTarget>
+                    <languageVersion>1.6</languageVersion>
+                    <apiVersion>1.6</apiVersion>
                 </configuration>
             </plugin>
             <plugin>
