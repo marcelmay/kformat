@@ -7,4 +7,10 @@ fun [print](print.md)(printStream: [PrintStream](https://docs.oracle.com/javase/
 
 Prints this table to a stream
 
-[printStream](print.md) stream to print to. Defaults to System.out
+#### Parameters
+
+JVM
+
+| | |
+|---|---|
+| printStream | stream to print to. Defaults to System.out |

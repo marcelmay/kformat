@@ -11,8 +11,9 @@ Defines the content alignment.
 
 | | |
 |---|---|
-| [LEFT](-l-e-f-t/index.md) | [JVM]<br>[LEFT](-l-e-f-t/index.md)<br>Align to the left |
-| [RIGHT](-r-i-g-h-t/index.md) | [JVM]<br>[RIGHT](-r-i-g-h-t/index.md)<br>Align to the right |
+| [LEFT](-l-e-f-t/index.md) | [JVM]<br>[LEFT](-l-e-f-t/index.md) |
+| [RIGHT](-r-i-g-h-t/index.md) | [JVM]<br>[RIGHT](-r-i-g-h-t/index.md) |
+| [CENTER](-c-e-n-t-e-r/index.md) | [JVM]<br>[CENTER](-c-e-n-t-e-r/index.md) |
 
 ## Properties
 

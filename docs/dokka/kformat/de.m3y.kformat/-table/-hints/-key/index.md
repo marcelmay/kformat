@@ -7,7 +7,7 @@ enum [Key](index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotli
 
 Defines the (internal) hint keys.
 
-KeyFormat ::= ColumnFormat ':' KeyName ColumnFormat ::= Integer | '*' KeyName ::= 'alignment'| ....
+KeyFormat ::= ColumnFormat ':' KeyName ColumnFormat ::= Integer | '*' KeyName ::= 'alignment'| ...
 
 ## Entries
 

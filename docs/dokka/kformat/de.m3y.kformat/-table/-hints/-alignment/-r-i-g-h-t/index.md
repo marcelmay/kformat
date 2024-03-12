@@ -5,8 +5,6 @@
 [JVM]\
 [RIGHT](index.md)
 
-Align to the right
-
 ## Properties
 
 | Name | Summary |
