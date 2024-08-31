@@ -13,4 +13,4 @@ JVM
 
 | | |
 |---|---|
-| printStream | stream to print to. Defaults to System.out |
+| printStream | stream to print to. Defaults to [System.out](https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#out--) |
