@@ -1,7 +1,6 @@
 package de.m3y.kformat
 
 import de.m3y.kformat.Table.BorderStyle.Companion.NONE
-import de.m3y.kformat.Table.BorderStyle.Companion.SINGLE_LINE
 import java.io.PrintStream
 import java.time.LocalDateTime
 import kotlin.math.max
@@ -307,7 +306,7 @@ class Table internal constructor() {
 
         /**
          * Prepends the margin value for each output row.
-         * Can be  e.g. used to indent a table.
+         * Can be used to indent a table.
          *
          * @param margin the margin value
          */
@@ -408,7 +407,7 @@ class Table internal constructor() {
     /**
      * Prints this table to a stream
      *
-     * @param printStream stream to print to. Defaults to System.out
+     * @param printStream stream to print to. Defaults to [System.out]
      */
     fun print(printStream: PrintStream = System.out) {
         printStream.println(toString())
@@ -456,7 +455,7 @@ class Table internal constructor() {
      *
      * @return a list of rows.
      */
-    fun rows() = rows as List<Table.Row>
+    fun rows() = rows as List<Row>
 
     /**
      * DSL builder helper for hints.
