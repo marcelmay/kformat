@@ -1,6 +1,7 @@
 package de.m3y.kformat
 
 import de.m3y.kformat.Table.BorderStyle.Companion.NONE
+import de.m3y.kformat.Table.BorderStyle.Companion.SINGLE_LINE
 import java.io.PrintStream
 import java.time.LocalDateTime
 import kotlin.math.max
@@ -182,7 +183,8 @@ class Table internal constructor() {
             Line,
             Postfix,
             Precision,
-            Prefix;
+            Prefix,
+            Separator;
 
             private fun makeKey(part: String) = "$part:$name"
             fun ofColumn(columnIndex: Int) = makeKey(columnIndex.toString())
@@ -329,7 +331,13 @@ class Table internal constructor() {
             updateSpecification(Key.Line.ofColumn(columnIndex), "")
         }
 
+        internal fun separator(columnIndex: Int) {
+            updateSpecification(Key.Separator.ofColumn(columnIndex), "")
+        }
+
         internal fun isLine(columnIndex: Int) = specification.containsKey(Key.Line.ofColumn(columnIndex))
+
+        internal fun isSeparator(columnIndex: Int) = specification.containsKey(Key.Separator.ofColumn(columnIndex))
 
         /**
          * Gets the column index for a header label.
@@ -376,25 +384,33 @@ class Table internal constructor() {
         val headerColumnFormat = widths.map { "%s" }
 
         rows.forEachIndexed { i, row ->
-            if (hints.isHeader(i)) {
-                row.render(out, headerColumnFormat, widths)
-                if (hints.borderStyle.hasRowSeparator()) {
-                    hints.leftMargin()?.also { out.append(it) }
-                    widths.forEachIndexed { index, w ->
-                        if (index > 0) {
-                            hints.borderStyle.renderConnect(out)
-                        }
-                        repeat(w) {
-                            hints.borderStyle.renderHorizontal(out)
-                        }
-                    }
-                    out.append(System.lineSeparator())
-                }
-            } else {
-                row.render(out, columnFormats, widths)
+            when {
+                hints.isHeader(i) -> renderHeader(row, out, headerColumnFormat, widths)
+                hints.isSeparator(i) -> renderSeparator(out, widths)
+                else -> row.render(out, columnFormats, widths)
             }
         }
         return out
+    }
+
+    private fun renderHeader(row: Row, out: StringBuilder, headerColumnFormat: List<String>, widths: IntArray) {
+        row.render(out, headerColumnFormat, widths)
+        if (hints.borderStyle.hasRowSeparator()) {
+            renderSeparator(out, widths)
+        }
+    }
+
+    private fun renderSeparator(out: StringBuilder, widths: IntArray) {
+        hints.leftMargin()?.also { out.append(it) }
+        widths.forEachIndexed { index, w ->
+            if (index > 0) {
+                hints.borderStyle.renderConnect(out)
+            }
+            repeat(w) {
+                hints.borderStyle.renderHorizontal(out)
+            }
+        }
+        out.append(System.lineSeparator())
     }
 
     /**
@@ -446,6 +462,16 @@ class Table internal constructor() {
      */
     fun row(vararg values: Any): Row {
         val row = Row(values.toMutableList())
+        rows.add(row)
+        return row
+    }
+
+    /**
+     * Adds a separator row.
+     */
+    fun separator(): Row {
+        hints.separator(rows.size)
+        val row = Row(mutableListOf())
         rows.add(row)
         return row
     }
