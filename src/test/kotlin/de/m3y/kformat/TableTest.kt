@@ -553,6 +553,32 @@ A B12345  C1 Dddddddd     Foo Bar
             """.trimIndent()
         )
     }
+
+    @Test
+    fun testSeparator() {
+        assertThat(table {
+            header("Animal", "Males", "Females")
+            row("Cats", 5, 4)
+            row("Dogs", 12, 7)
+            separator()
+            row("Total", 17, 11)
+
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+            }
+        }.render().trim()).isEqualTo(
+            """
+                Animal | Males | Females
+                -------|-------|--------
+                Cats   |     5 |       4
+                Dogs   |    12 |       7
+                -------|-------|--------
+                Total  |    17 |      11
+            """.trimIndent()
+        )
+    }
 }
 
 fun main() {
