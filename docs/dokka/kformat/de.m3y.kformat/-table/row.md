@@ -3,7 +3,7 @@
 # row
 
 [JVM]\
-fun [row](row.md)(vararg values: [Any](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html)): [Table.Row](-row/index.md)
+fun [row](row.md)(vararg values: [Any](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html)): [Table.Row](-row/index.md)
 
 Sets the content values of a row.
 

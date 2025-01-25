@@ -3,7 +3,7 @@
 # formatFlag
 
 [JVM]\
-fun [formatFlag](format-flag.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html), flag: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html))
+fun [formatFlag](format-flag.md)(columnIndex: [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html), flag: [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html))
 
 Provides a formatting flag instruction.
 

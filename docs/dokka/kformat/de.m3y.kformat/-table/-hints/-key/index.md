@@ -3,7 +3,7 @@
 # Key
 
 [JVM]\
-enum [Key](index.md) : [Enum](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html)&lt;[Table.Hints.Key](index.md)&gt; 
+enum [Key](index.md) : [Enum](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html)&lt;[Table.Hints.Key](index.md)&gt; 
 
 Defines the (internal) hint keys.
 
@@ -21,20 +21,21 @@ KeyFormat ::= ColumnFormat ':' KeyName ColumnFormat ::= Integer | '*' KeyName ::
 | [Postfix](-postfix/index.md) | [JVM]<br>[Postfix](-postfix/index.md) |
 | [Precision](-precision/index.md) | [JVM]<br>[Precision](-precision/index.md) |
 | [Prefix](-prefix/index.md) | [JVM]<br>[Prefix](-prefix/index.md) |
+| [Separator](-separator/index.md) | [JVM]<br>[Separator](-separator/index.md) |
 
 ## Properties
 
 | Name | Summary |
 |---|---|
-| [entries](entries.md) | [JVM]<br>val [entries](entries.md): [EnumEntries](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.enums/-enum-entries/index.html)&lt;[Table.Hints.Key](index.md)&gt;<br>Returns a representation of an immutable list of all enum entries, in the order they're declared. |
-| [name](-prefix/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](-prefix/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [ordinal](-prefix/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](-prefix/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [entries](entries.md) | [JVM]<br>val [entries](entries.md): [EnumEntries](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.enums/-enum-entries/index.html)&lt;[Table.Hints.Key](index.md)&gt;<br>Returns a representation of an immutable list of all enum entries, in the order they're declared. |
+| [name](-separator/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](-separator/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
+| [ordinal](-separator/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](-separator/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html) |
 
 ## Functions
 
 | Name | Summary |
 |---|---|
-| [ofAnyColumn](of-any-column.md) | [JVM]<br>fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [ofColumn](of-column.md) | [JVM]<br>fun [ofColumn](of-column.md)(columnIndex: [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [valueOf](value-of.md) | [JVM]<br>fun [valueOf](value-of.md)(value: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)): [Table.Hints.Key](index.md)<br>Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.) |
-| [values](values.md) | [JVM]<br>fun [values](values.md)(): [Array](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html)&lt;[Table.Hints.Key](index.md)&gt;<br>Returns an array containing the constants of this enum type, in the order they're declared. |
+| [ofAnyColumn](of-any-column.md) | [JVM]<br>fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
+| [ofColumn](of-column.md) | [JVM]<br>fun [ofColumn](of-column.md)(columnIndex: [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html)): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
+| [valueOf](value-of.md) | [JVM]<br>fun [valueOf](value-of.md)(value: [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html)): [Table.Hints.Key](index.md)<br>Returns the enum constant of this type with the specified name. The string must match exactly an identifier used to declare an enum constant in this type. (Extraneous whitespace characters are not permitted.) |
+| [values](values.md) | [JVM]<br>fun [values](values.md)(): [Array](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-array/index.html)&lt;[Table.Hints.Key](index.md)&gt;<br>Returns an array containing the constants of this enum type, in the order they're declared. |

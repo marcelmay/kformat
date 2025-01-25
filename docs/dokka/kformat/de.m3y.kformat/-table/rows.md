@@ -3,7 +3,7 @@
 # rows
 
 [JVM]\
-fun [rows](rows.md)(): [List](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)&lt;[Table.Row](-row/index.md)&gt;
+fun [rows](rows.md)(): [List](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html)&lt;[Table.Row](-row/index.md)&gt;
 
 Gets the current rows.
 

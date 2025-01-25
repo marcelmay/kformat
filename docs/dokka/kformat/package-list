@@ -33,6 +33,7 @@ $dokka.location:de.m3y.kformat/Table.Hints.Key.Line///PointingToDeclaration/{"or
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Postfix///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-postfix/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Precision///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-precision/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Prefix///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-prefix/index.md
+$dokka.location:de.m3y.kformat/Table.Hints.Key.Separator///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-separator/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key///PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key/entries/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/entries.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key/ofAnyColumn/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/of-any-column.md
@@ -76,6 +77,6 @@ $dokka.location:de.m3y.kformat/Table/print/#java.io.PrintStream/PointingToDeclar
 $dokka.location:de.m3y.kformat/Table/render/#java.lang.StringBuilder/PointingToDeclaration/kformat/de.m3y.kformat/-table/render.md
 $dokka.location:de.m3y.kformat/Table/row/#kotlin.Array[kotlin.Any]/PointingToDeclaration/kformat/de.m3y.kformat/-table/row.md
 $dokka.location:de.m3y.kformat/Table/rows/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/rows.md
+$dokka.location:de.m3y.kformat/Table/separator/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/separator.md
 $dokka.location:de.m3y.kformat/Table/toString/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/to-string.md
 de.m3y.kformat
-

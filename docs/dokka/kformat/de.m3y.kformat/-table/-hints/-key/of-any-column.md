@@ -3,4 +3,4 @@
 # ofAnyColumn
 
 [JVM]\
-fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+fun [ofAnyColumn](of-any-column.md)(): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html)

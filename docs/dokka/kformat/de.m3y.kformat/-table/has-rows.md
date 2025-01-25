@@ -3,7 +3,7 @@
 # hasRows
 
 [JVM]\
-fun [hasRows](has-rows.md)(): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+fun [hasRows](has-rows.md)(): [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html)
 
 Returns true if table contains at least one 'data' row.
 

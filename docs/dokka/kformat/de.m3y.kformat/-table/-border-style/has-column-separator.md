@@ -3,4 +3,4 @@
 # hasColumnSeparator
 
 [JVM]\
-open override fun [hasColumnSeparator](has-column-separator.md)(): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+open override fun [hasColumnSeparator](has-column-separator.md)(): [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html)

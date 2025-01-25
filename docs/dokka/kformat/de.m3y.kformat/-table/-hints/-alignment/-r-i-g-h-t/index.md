@@ -9,5 +9,5 @@
 
 | Name | Summary |
 |---|---|
-| [name](../../-key/-prefix/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](../../-key/-prefix/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [ordinal](../../-key/-prefix/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](../../-key/-prefix/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [name](../../-key/-separator/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](../../-key/-separator/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
+| [ordinal](../../-key/-separator/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](../../-key/-separator/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html) |

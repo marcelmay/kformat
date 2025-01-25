@@ -3,4 +3,4 @@
 # hasRowSeparator
 
 [JVM]\
-abstract fun [hasRowSeparator](has-row-separator.md)(): [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+abstract fun [hasRowSeparator](has-row-separator.md)(): [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html)

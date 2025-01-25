@@ -3,7 +3,7 @@
 # table
 
 [JVM]\
-fun [table](table.md)(init: [Table](-table/index.md).() -&gt; [Unit](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)): [Table](-table/index.md)
+fun [table](table.md)(init: [Table](-table/index.md).() -&gt; [Unit](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html)): [Table](-table/index.md)
 
 Starts building a table.
 
