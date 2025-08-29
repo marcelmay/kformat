@@ -3,7 +3,7 @@
 # Hints
 
 [JVM]\
-class [Hints](index.md)(table: [Table](../index.md), var defaultAlignment: [Table.Hints.Alignment](-alignment/index.md) = Alignment.RIGHT, var borderStyle: [Table.BorderRenderer](../-border-renderer/index.md) = NONE)
+class [Hints](index.md)(table: [Table](../index.md), var defaultAlignment: [Table.Hints.Alignment](-alignment/index.md) = Alignment.RIGHT, var borderStyle: [Table.BorderRenderer](../-border-renderer/index.md) = NONE, var ignoreAnsi: [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html) = true)
 
 Holds additional hints for rendering cells, such as cell content alignment.
 
@@ -11,7 +11,7 @@ Holds additional hints for rendering cells, such as cell content alignment.
 
 | | |
 |---|---|
-| [Hints](-hints.md) | [JVM]<br>constructor(table: [Table](../index.md), defaultAlignment: [Table.Hints.Alignment](-alignment/index.md) = Alignment.RIGHT, borderStyle: [Table.BorderRenderer](../-border-renderer/index.md) = NONE) |
+| [Hints](-hints.md) | [JVM]<br>constructor(table: [Table](../index.md), defaultAlignment: [Table.Hints.Alignment](-alignment/index.md) = Alignment.RIGHT, borderStyle: [Table.BorderRenderer](../-border-renderer/index.md) = NONE, ignoreAnsi: [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html) = true) |
 
 ## Types
 
@@ -26,6 +26,7 @@ Holds additional hints for rendering cells, such as cell content alignment.
 |---|---|
 | [borderStyle](border-style.md) | [JVM]<br>var [borderStyle](border-style.md): [Table.BorderRenderer](../-border-renderer/index.md)<br>Defines the border style |
 | [defaultAlignment](default-alignment.md) | [JVM]<br>var [defaultAlignment](default-alignment.md): [Table.Hints.Alignment](-alignment/index.md)<br>Defines the default horizontal cell alignment |
+| [ignoreAnsi](ignore-ansi.md) | [JVM]<br>var [ignoreAnsi](ignore-ansi.md): [Boolean](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html)<br>Defines whether to ignore ANSI escape sequences for length calculation |
 
 ## Functions
 

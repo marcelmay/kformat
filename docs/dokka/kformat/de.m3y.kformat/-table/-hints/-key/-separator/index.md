@@ -9,8 +9,8 @@
 
 | Name | Summary |
 |---|---|
-| [name](index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
-| [ordinal](index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html) |
+| [name](../-ignore-ansi/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](../-ignore-ansi/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
+| [ordinal](../-ignore-ansi/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](../-ignore-ansi/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html) |
 
 ## Functions
 

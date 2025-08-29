@@ -1,13 +1,12 @@
 <?xml version='1.0'?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.m3y.kformat</groupId>
     <artifactId>kformat</artifactId>
     <packaging>jar</packaging>
-    <version>0.13-SNAPSHOT</version>
+    <version>0.14-SNAPSHOT</version>
 
     <name>KFormat</name>
     <description>KFormat - formatted text output in Kotlin</description>
@@ -189,7 +188,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.11.2</version>
+                    <version>3.11.3</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -227,8 +226,8 @@
                 </executions>
                 <configuration>
                     <jvmTarget>1.8</jvmTarget>
-                    <languageVersion>1.6</languageVersion>
-                    <apiVersion>1.6</apiVersion>
+                    <languageVersion>1.8</languageVersion>
+                    <apiVersion>1.8</apiVersion>
                 </configuration>
             </plugin>
             <plugin>

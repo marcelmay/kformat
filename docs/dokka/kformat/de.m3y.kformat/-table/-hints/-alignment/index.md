@@ -20,8 +20,8 @@ Defines the content alignment.
 | Name | Summary |
 |---|---|
 | [entries](entries.md) | [JVM]<br>val [entries](entries.md): [EnumEntries](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.enums/-enum-entries/index.html)&lt;[Table.Hints.Alignment](index.md)&gt;<br>Returns a representation of an immutable list of all enum entries, in the order they're declared. |
-| [name](../-key/-separator/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](../-key/-separator/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
-| [ordinal](../-key/-separator/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](../-key/-separator/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html) |
+| [name](../-key/-ignore-ansi/index.md#-372974862%2FProperties%2F-1067530276) | [JVM]<br>val [name](../-key/-ignore-ansi/index.md#-372974862%2FProperties%2F-1067530276): [String](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html) |
+| [ordinal](../-key/-ignore-ansi/index.md#-739389684%2FProperties%2F-1067530276) | [JVM]<br>val [ordinal](../-key/-ignore-ansi/index.md#-739389684%2FProperties%2F-1067530276): [Int](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html) |
 
 ## Functions
 
