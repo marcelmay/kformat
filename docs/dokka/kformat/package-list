@@ -18,6 +18,8 @@ $dokka.location:de.m3y.kformat/Table.BorderStyle/hasRowSeparator/#/PointingToDec
 $dokka.location:de.m3y.kformat/Table.BorderStyle/renderConnect/#java.lang.StringBuilder/PointingToDeclaration/kformat/de.m3y.kformat/-table/-border-style/render-connect.md
 $dokka.location:de.m3y.kformat/Table.BorderStyle/renderHorizontal/#java.lang.StringBuilder/PointingToDeclaration/kformat/de.m3y.kformat/-table/-border-style/render-horizontal.md
 $dokka.location:de.m3y.kformat/Table.BorderStyle/renderVertical/#java.lang.StringBuilder/PointingToDeclaration/kformat/de.m3y.kformat/-table/-border-style/render-vertical.md
+$dokka.location:de.m3y.kformat/Table.Companion///PointingToDeclaration/kformat/de.m3y.kformat/-table/-companion/index.md
+$dokka.location:de.m3y.kformat/Table.Companion/ANSI_ESCAPE_SEQUENCE_REGEX/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-companion/-a-n-s-i_-e-s-c-a-p-e_-s-e-q-u-e-n-c-e_-r-e-g-e-x.md
 $dokka.location:de.m3y.kformat/Table.Hints.Alignment.CENTER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-alignment/-c-e-n-t-e-r/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Alignment.LEFT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-alignment/-l-e-f-t/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Alignment.RIGHT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-alignment/-r-i-g-h-t/index.md
@@ -28,6 +30,7 @@ $dokka.location:de.m3y.kformat/Table.Hints.Alignment/values/#/PointingToDeclarat
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Alignment///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-alignment/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.FormatFlag///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-format-flag/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Header///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-header/index.md
+$dokka.location:de.m3y.kformat/Table.Hints.Key.IgnoreAnsi///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-ignore-ansi/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.LeftMargin///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-left-margin/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Line///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-line/index.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key.Postfix///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}kformat/de.m3y.kformat/-table/-hints/-key/-postfix/index.md
@@ -41,13 +44,14 @@ $dokka.location:de.m3y.kformat/Table.Hints.Key/ofColumn/#kotlin.Int/PointingToDe
 $dokka.location:de.m3y.kformat/Table.Hints.Key/valueOf/#kotlin.String/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/value-of.md
 $dokka.location:de.m3y.kformat/Table.Hints.Key/values/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-key/values.md
 $dokka.location:de.m3y.kformat/Table.Hints///PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/index.md
-$dokka.location:de.m3y.kformat/Table.Hints/Hints/#de.m3y.kformat.Table#de.m3y.kformat.Table.Hints.Alignment#de.m3y.kformat.Table.BorderRenderer/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-hints.md
+$dokka.location:de.m3y.kformat/Table.Hints/Hints/#de.m3y.kformat.Table#de.m3y.kformat.Table.Hints.Alignment#de.m3y.kformat.Table.BorderRenderer#kotlin.Boolean/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/-hints.md
 $dokka.location:de.m3y.kformat/Table.Hints/alignment/#kotlin.Int#de.m3y.kformat.Table.Hints.Alignment/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/alignment.md
 $dokka.location:de.m3y.kformat/Table.Hints/alignment/#kotlin.Int/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/alignment.md
 $dokka.location:de.m3y.kformat/Table.Hints/alignment/#kotlin.String#de.m3y.kformat.Table.Hints.Alignment/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/alignment.md
 $dokka.location:de.m3y.kformat/Table.Hints/borderStyle/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/border-style.md
 $dokka.location:de.m3y.kformat/Table.Hints/defaultAlignment/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/default-alignment.md
 $dokka.location:de.m3y.kformat/Table.Hints/formatFlag/#kotlin.Int#kotlin.String/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/format-flag.md
+$dokka.location:de.m3y.kformat/Table.Hints/ignoreAnsi/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/ignore-ansi.md
 $dokka.location:de.m3y.kformat/Table.Hints/leftMargin/#/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/left-margin.md
 $dokka.location:de.m3y.kformat/Table.Hints/leftMargin/#kotlin.String/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/left-margin.md
 $dokka.location:de.m3y.kformat/Table.Hints/postfix/#kotlin.Int#kotlin.String/PointingToDeclaration/kformat/de.m3y.kformat/-table/-hints/postfix.md

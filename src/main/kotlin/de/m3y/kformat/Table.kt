@@ -36,6 +36,15 @@ import kotlin.math.max
  *  ```
  */
 class Table internal constructor() {
+    companion object {
+        /**
+         * Regex pattern matching ANSI escape sequences.
+         *
+         * See https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_codes
+         */
+        val ANSI_ESCAPE_SEQUENCE_REGEX = """\u001b\[[;\d]*m""".toRegex()
+    }
+
     /**
      * Renders a border.
      */
@@ -159,8 +168,12 @@ class Table internal constructor() {
         /** Defines the default horizontal cell alignment */
         var defaultAlignment: Alignment = Alignment.RIGHT,
         /** Defines the border style */
-        var borderStyle: BorderRenderer = NONE
+        var borderStyle: BorderRenderer = NONE,
+        /** Defines whether to ignore ANSI escape sequences for length calculation */
+        var ignoreAnsi: Boolean = true
     ) {
+        internal val hasAnsi by lazy { specification.containsKey(Key.IgnoreAnsi.ofAnyColumn()) }
+
         /** Defines the content alignment. */
         enum class Alignment {
             LEFT,
@@ -184,7 +197,8 @@ class Table internal constructor() {
             Postfix,
             Precision,
             Prefix,
-            Separator;
+            Separator,
+            IgnoreAnsi;
 
             private fun makeKey(part: String) = "$part:$name"
             fun ofColumn(columnIndex: Int) = makeKey(columnIndex.toString())
@@ -263,7 +277,7 @@ class Table internal constructor() {
         fun postfix(columnIndex: Int) = (getSpecification(Key.Postfix.ofColumn(columnIndex)) as String?) ?: ""
 
 
-        internal fun postfixLengthIncrement(columnIndex: Int): Int = postfix(columnIndex).length
+        internal fun postfixLengthIncrement(columnIndex: Int): Int = table.length(postfix(columnIndex))
 
         /**
          * Defines a prefix for a column specified by the header label.
@@ -292,7 +306,7 @@ class Table internal constructor() {
          */
         fun prefix(columnIndex: Int) = (getSpecification(Key.Prefix.ofColumn(columnIndex)) as String?) ?: ""
 
-        internal fun prefixLengthIncrement(columnIndex: Int): Int = prefix(columnIndex).length
+        internal fun prefixLengthIncrement(columnIndex: Int): Int = table.length(prefix(columnIndex))
 
         /**
          * Provides a formatting flag instruction.
@@ -511,7 +525,7 @@ class Table internal constructor() {
                 r.values.forEachIndexed { i, v ->
                     if (isHeader) {
                         // Header
-                        w[i] = max(w[i], v.toString().length)
+                        w[i] = max(w[i], length(v.toString()))
                     } else {
                         // Headers can be not set
                         val valueExtraLength = extraFormattedValueLength(i)
@@ -519,14 +533,14 @@ class Table internal constructor() {
                         w[i] = max(
                             w[i],
                             when (v) {
-                                is CharSequence -> ("%" + formatFlags + "s").format(v).length
-                                is Int -> ("%" + formatFlags + "d").format(v).length
-                                is Long -> ("%" + formatFlags + "d").format(v).length
-                                is Boolean -> ("%" + formatFlags + "b").format(v).length
+                                is CharSequence -> length(("%" + formatFlags + "s").format(v))
+                                is Int -> length(("%" + formatFlags + "d").format(v))
+                                is Long -> length(("%" + formatFlags + "d").format(v))
+                                is Boolean -> length(("%" + formatFlags + "b").format(v))
                                 is Float -> length(v.toDouble(), hints.precision(i), formatFlags)
                                 is Double -> length(v, hints.precision(i), formatFlags)
-                                is LocalDateTime -> v.toString().length
-                                else -> v.toString().length
+                                is LocalDateTime -> length(v.toString())
+                                else -> length(v.toString())
                             } + valueExtraLength
                         )
                     }
@@ -536,12 +550,21 @@ class Table internal constructor() {
         return w
     }
 
-    private fun length(d: Double, precision: Int, formatFlags: String) =
-        if (precision > 0) {
-            ("%" + formatFlags + "." + precision + "f")
+    internal fun length(s: CharSequence): Int =
+        if (hints.ignoreAnsi) {
+            ANSI_ESCAPE_SEQUENCE_REGEX.replace(s, "").length
         } else {
-            "%" + formatFlags + "f"
-        }.format(d).length
+            s.length
+        }
+
+    private fun length(d: Double, precision: Int, formatFlags: String) =
+        length(
+            if (precision > 0) {
+                ("%" + formatFlags + "." + precision + "f")
+            } else {
+                "%" + formatFlags + "f"
+            }.format(d)
+        )
 
     private fun extraFormattedValueLength(columnIndex: Int): Int =
         hints.postfixLengthIncrement(columnIndex) +
@@ -605,13 +628,11 @@ class Table internal constructor() {
             .maxByOrNull { it.values.size }
             ?: throw IllegalStateException("No row found in $rows that is not an unformatted 'line' or 'header'")
 
-
     private fun escapeForFormat(s: String) =
         s.replace("%", "%%")
 
     private fun getPrecisionFormat(columnIndex: Int) =
         hints.precisionFormat(columnIndex)
-
 
     /**
      * Adds an unformatted row (aka line).

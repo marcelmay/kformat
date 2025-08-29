@@ -48,7 +48,7 @@ class TableTest {
             7     70 700 v7       0.70% 2019-12-10T21:07
             8     80 800 v8       0.80% 2019-12-10T21:08
             9     90 900 v9       0.90% 2019-12-10T21:09
-            """.replace('.',decimalSeparatorChar).trimIndent()
+            """.replace('.', decimalSeparatorChar).trimIndent()
         )
         assertThat(table {
             // Add the header labels
@@ -72,7 +72,7 @@ class TableTest {
 A B12345  C1 Dddddddd     Foo Bar             
 9    900 900 v9       -100.0% 2019-12-10T21:10
 9    900 900 v9         20.2% 2019-12-10T21:10
-            """.replace('.',decimalSeparatorChar).trimIndent()
+            """.replace('.', decimalSeparatorChar).trimIndent()
         )
     }
 
@@ -424,7 +424,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     ---|----|-----
                     10 | b1 | 1.50
                     20 |    |
-                    """.replace('.',decimalSeparatorChar).trimIndent()
+                    """.replace('.', decimalSeparatorChar).trimIndent()
         )
         assertThat(table {
             header("A", "B")
@@ -440,7 +440,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     ---|----|---------
                     10 | b1 | 1.500000
                     20 |    |
-                    """.replace('.',decimalSeparatorChar).trimIndent()
+                    """.replace('.', decimalSeparatorChar).trimIndent()
         )
     }
 
@@ -460,7 +460,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     A  |  B |     C
                     ---|----|------
                     10 | b1 | +1.50
-                    """.replace('.',decimalSeparatorChar).trimIndent()
+                    """.replace('.', decimalSeparatorChar).trimIndent()
         )
 
         assertThat(table {
@@ -479,7 +479,7 @@ A B12345  C1 Dddddddd     Foo Bar
                     ---|----|------
                     10 | b1 | +1.50
                     1  | b1 | -1.33
-                    """.replace('.',decimalSeparatorChar).trimIndent()
+                    """.replace('.', decimalSeparatorChar).trimIndent()
         )
     }
 
@@ -576,6 +576,50 @@ A B12345  C1 Dddddddd     Foo Bar
                 Dogs   |    12 |       7
                 -------|-------|--------
                 Total  |    17 |      11
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun testContentWithAnsiEscapeSequences() {
+        assertThat(table {
+            header("A", "B")
+            row("\u001b[31ma1\u001b[0m" /* red */, "b1")
+            row("a2", "\u001b[32mb2\u001b[0m" /* green */)
+
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                assertThat(ignoreAnsi).isTrue() // Check default
+                ignoreAnsi = false
+            }
+        }.render().trim()).isEqualTo(
+            """
+            A           |           B
+            ------------|------------
+            [31ma1[0m |          b1
+            a2          | [32mb2[0m
+            """.trimIndent()
+        )
+
+        assertThat(table {
+            header("A", "B")
+            row("\u001b[31ma1\u001b[0m" /* red */, "b1")
+            row("a2", "\u001b[32mb2\u001b[0m" /* green */)
+
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+                ignoreAnsi = true
+            }
+        }.render().trim()).isEqualTo(
+            """
+            A  |  B
+            ---|---
+            [31ma1[0m | b1
+            a2 | [32mb2[0m
             """.trimIndent()
         )
     }
