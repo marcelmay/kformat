@@ -115,12 +115,17 @@ class Table internal constructor() {
                     try {
                         // 1st phase : Render value
                         val valueRendered = formatSpecs[i].format(columnValue)
+                        val paddedWidth = if(hints.ignoreAnsi) { // Adjust expected length by adding ANSI escape sequences length
+                            w + (valueRendered.length - ANSI_ESCAPE_SEQUENCE_REGEX.replace(valueRendered, "").length)
+                        } else {
+                            w
+                        }
                         out.append(
                             // 2nd phase: Align rendered value in cell of given width
                             when (hints.alignment(i)) {
-                                Hints.Alignment.CENTER -> padCenter(valueRendered, w)
-                                Hints.Alignment.LEFT -> valueRendered.padEnd(w)
-                                Hints.Alignment.RIGHT -> valueRendered.padStart(w)
+                                Hints.Alignment.CENTER -> padCenter(valueRendered, paddedWidth)
+                                Hints.Alignment.LEFT -> valueRendered.padEnd( paddedWidth)
+                                Hints.Alignment.RIGHT -> valueRendered.padStart(paddedWidth)
                             }
                         )
                     } catch (e: java.util.IllegalFormatConversionException) {

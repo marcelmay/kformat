@@ -622,6 +622,46 @@ A B12345  C1 Dddddddd     Foo Bar
             a2 | [32mb2[0m
             """.trimIndent()
         )
+
+        assertThat(table {
+            header("Color", "Number")
+            row("\u001B[31mRed\u001B[0m", "1")
+            row("\u001B[34mBlue\u001B[0m", "2")
+            row("\u001B[33mYellow\u001B[0m", "3")
+            hints {
+                alignment(0, Hints.Alignment.LEFT)
+                alignment(1, Hints.Alignment.RIGHT)
+                borderStyle = Table.BorderStyle.SINGLE_LINE
+            }
+        }.render().trim()).isEqualTo(
+            """
+            Color  | Number
+            -------|-------
+            [31mRed[0m    |      1
+            [34mBlue[0m   |      2
+            [33mYellow[0m |      3
+            """.trimIndent()
+        )
+        assertThat(table {
+            header("Color", "Number")
+            row("\u001B[31mRed\u001B[0m", "1")
+            row("\u001B[34mBlue\u001B[0m", "2")
+            row("\u001B[33mYellow\u001B[0m", "3")
+        }.render().toString().trimIndent()).isEqualTo(
+"""
+         Color Number
+           [31mRed[0m      1
+          [34mBlue[0m      2
+        [33mYellow[0m      3
+""".trimIndent()
+        )
+    }
+
+    @Test
+    fun testRegexp() {
+        assertThat(Table.ANSI_ESCAPE_SEQUENCE_REGEX.replace("\u001B[31mRed\u001B[0m","")).isEqualTo("Red")
+        assertThat(Table.ANSI_ESCAPE_SEQUENCE_REGEX.replace("\u001B[34mBlue\u001B[0m","")).isEqualTo("Blue")
+        assertThat(Table.ANSI_ESCAPE_SEQUENCE_REGEX.replace("\u001B[33mYellow\u001B[0m","")).isEqualTo("Yellow")
     }
 }
 
@@ -640,6 +680,14 @@ fun main() {
                 postfix("C", "%")
                 borderStyle = Table.BorderStyle.SINGLE_LINE
             }
+        }.render(StringBuilder())
+    )
+    println(
+        table {
+            header("Color", "Number")
+            row("\u001B[31mRed\u001B[0m", "1")
+            row("\u001B[34mBlue\u001B[0m", "2")
+            row("\u001B[33mYellow\u001B[0m", "3")
         }.render(StringBuilder())
     )
 }
